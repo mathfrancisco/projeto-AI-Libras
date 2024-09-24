@@ -1,575 +1,139 @@
 .container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: #F0F0F0;
-  border-radius: 30px;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #F0F0F0;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 .left-panel {
-  width: 344px;
-  height: 100%;
-  position: absolute;
-  background: #3C70E7;
-  border-top-left-radius: 58px;
+    width: 344px;
+    height: 100%;
+    position: absolute;
+    background: #3C70E7;
+    border-top-left-radius: 58px;
 }
 
 .top-section {
-  width: 100%;
-  height: 173px;
-  background: #3B59E0;
+    width: 344px;
+    height: 173px;
+    background: #3B59E0;
 }
 
 .profile-image {
-  position: absolute;
-  left: 40px;
-  top: 66px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+    position: absolute;
+    left: 40px;
+    top: 66px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
 }
 
 .text-content {
-  position: absolute;
-  left: 113px;
-  top: 71px;
+    position: absolute;
+    left: 113px;
+    top: 71px;
+    color: white;
 }
 
 .text-content .title {
-  color: white;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold; /* Changed to bold for emphasis */
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 .text-content .subtitle {
-  color: white;
-  font-size: 12px;
-  font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .action-buttons {
-  position: absolute;
-  left: 40px;
-  top: calc(173px + 49px); /* Adjusted for dynamic spacing */
+    position: absolute;
+    left: 40px;
+    top: calc(173px + 49px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .button {
-  display: flex; /* Changed to flex for better alignment */
-  justify-content: flex-start; /* Aligns items to the start */
-  align-items: center; 
-  gap: 15px; 
-}
-
-.button .icon {
-  width: 20px; 
-  height: auto; /* Set to auto for responsiveness */
-}
-
-.button .label {
-  color: white; 
-  font-size: 16px; 
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    gap: 15px;
 }
 
 .separator {
-  width: calc(100% - (40 *2)); /* Full width minus padding */
-  height: auto; 
-  margin-top: calc(40px + (15 * number_of_buttons)); /* Dynamic spacing based on buttons */
+    width: 100%;
+    height: 1px;
+    background: rgba(12, 12, 12, 0.26);
+    margin-top: 40px;
 }
 
 .right-panel {
-    width: calc(100% - (344px + (40 *2))); /* Adjusted for responsive design */
-    height: calc(100% - (40 *2)); /* Full height minus padding */
-    position:absolute; 
-    right:0; 
-    top:0; 
-    background-color:#FFF; /* Added background for clarity */
-    border-top-right-radius:30px; /* Rounded corners */
-    border-bottom-right-radius:30px; /* Rounded corners */
-    overflow-y:auto; /* Allow scrolling if content overflows */
+    position: absolute;
+    right: 0;
+    width: calc(100% - 344px);
+    height: 100%;
+    background-color: white;
+    border-radius: 0 30px 30px 0;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.content-section {
+    display: none;
 }
 
 .message-box {
-    width: calc(100% - (40 *2)); /* Full width with padding */
-    padding:20px; 
-    margin-bottom:15px; /* Spacing between messages */
-    background:#232121; 
-    border-left:#4C5FA1 solid; 
-    display:flex; 
-    align-items:flex-start; 
-    gap:30px; 
+    width: 100%;
+    padding: 20px;
+    background: #232121;
+    color: #D4D4D4;
+    display: flex;
+    gap: 30px;
+    border-left: 2px solid #4C5FA1;
 }
 
 .message-box .avatar {
-    width:70px; 
-    height:auto; 
-    border-radius:50%; 
-}
-
-.message-box .message-content {
-    color:#D4D4D4; 
-    font-size:16px; 
-}
-
-/* Action Buttons in Right Panel */
-.action-buttons {
-   display:flex; 
-   justify-content:flex-start; 
-   gap:15px; 
-   margin-top:auto; /* Pushes buttons to the bottom */
-   padding-top:20px; /* Space above buttons */
-}
-
-/* Individual Action Buttons */
-.action-buttons .button {
-   padding:.5rem .75rem; /* Padding for buttons */
-   border-radius:.5rem; /* Rounded corners for buttons */
-   display:flex; 
-   justify-content:center; 
-   align-items:center; 
-}
-
-/* Delete Button Styles */
-.action-buttons .button.delete-button {
-   background-color:#FB2323;
-   color:white;
-}
-
-/* Regenerate Button Styles */
-.action-buttons .button.regenerate-button {
-   background-color:#11B063;
-   color:white;
-}
-
-/* Word Count Display */
-.action-buttons .word-count {
-   display:flex; 
-   align-items:center; 
-}
-
-/* User Info Section */
-.user-info {
-   display:flex; 
-   align-items:center; 
-   gap:.5rem; /* Space between avatar and label */
-}
-
-/* Input Box Styles */
-.input-box {
-   display:flex; 
-   align-items:center; 
-   border-radius:.5rem; 
-   border:.5px rgba(68,84,144,.29) solid;
-}
-
-/* Send Button Styles */
-.send-button {
-   background:#3B59E0;
-   border-radius:.5rem;.5rem
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: #F0F0F0;
-  border-radius: 30px;
-  overflow: hidden;
-}
-
-.left-panel {
-  width: 344px;
-  height: 100%;
-  position: absolute;
-  background: #3C70E7;
-  border-top-left-radius: 58px;
-}
-
-.top-section {
-  width: 344px;
-  height: 173px;
-  position: absolute;
-  background: #3B59E0;
-}
-
-.profile-image {
-  position: absolute;
-  left: 40px;
-  top: 66px;
-  width: 56px;
-  height: 56px;
-  border-radius: 9999px;
-}
-
-.text-content {
-  position: absolute;
-  left: 113px;
-  top: 71px;
-}
-
-.text-content .title {
-  color: white;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
-}
-
-.text-content .subtitle {
-  color: white;
-  font-size: 12px;
-  font-family: Poppins;
-  font-weight: 400;
+    width: 70px;
+    height: auto;
+    border-radius: 50%;
 }
 
 .action-buttons {
-  position: absolute;
-  left: 40px;
-  top: 222px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-.button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-}
-
-.button .icon {
-  width: 20px;
-  height: 19.5px;
-  background: white;
-}
-
-.button .label {
-  color: white;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.button.upgrade {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-}
-
-.button.upgrade .icon-upgrade {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.button.upgrade .icon-upgrade > div {
-  position: absolute;
-  background: white;
-}
-
-.button.faq {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-}
-
-.button.faq .icon-faq {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.button.faq .icon-faq > div {
-  position: absolute;
-  background: white;
-}
-
-.button.settings {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.button.settings .icon-settings {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.button.settings .icon-settings > div {
-  position: absolute;
-  background: white;
-}
-
-.button.logout {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-.button.logout .icon-logout {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.button.logout .icon-logout > div {
-  position: absolute;
-  border: 2px white solid;
-}
-
-.separator {
-  width: 344px;
-  height: 0px;
-  position: absolute;
-  left: 0px;
-  top: 617px;
-  border: 1px rgba(12.75, 12.75, 12.75, 0.26) solid;
-}
-
-.right-panel {
-  width: 694px;
-  height: 1024px;
-  position: absolute;
-  left: 546px;
-  top: 0;
-}
-
-.message-box {
-  width: 694px;
-  padding: 20px 30px;
-  position: absolute;
-  left: 546px;
-  top: 546px;
-  background: #232121;
-  border-left: 2px #4C5FA1 solid;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 30px;
-}
-
-.message-box .avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 300px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.message-box .message-content {
-  width: 554px;
-  height: 71px;
-  color: #D4D4D4;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.message-box.alt {
-  width: 566px;
-  padding: 20px;
-  position: absolute;
-  left: 546px;
-  top: 387px;
-  background: #232121;
-  border-radius: 10px;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 21px;
-}
-
-.message-box.alt .avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 9999px;
-}
-
-.message-box.alt .message-content {
-  width: 566px;
-  height: 53px;
-  color: #D4D4D4;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.action-buttons {
-  width: 729px;
-  height: 41px;
-  position: absolute;
-  left: 546px;
-  top: 844px;
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .action-buttons .button {
-  padding: 10px 16px;
-  position: absolute;
-  border-radius: 6px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
 }
 
-.action-buttons .button.delete-button {
-  width: 212px;
-  left: 0;
-  background: rgba(251.41, 35.09, 35.09, 0.19);
+.action-buttons .delete-button {
+    background-color: #FB2323;
+    color: white;
 }
 
-.action-buttons .button.delete-button .icon {
-  width: 16px;
-  height: 18px;
-  background: #FB2323;
-}
-
-.action-buttons .button.delete-button .label {
-  color: #FB2323;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 500;
-}
-
-.action-buttons .button.regenerate-button {
-  width: 221.81px;
-  left: 236px;
-  background: rgba(17.28, 176.22, 99.40, 0.20);
-}
-
-.action-buttons .button.regenerate-button .icon {
-  width: 14.81px;
-  height: 18px;
-  background: #11B063;
-}
-
-.action-buttons .button.regenerate-button .label {
-  color: #11B063;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 500;
-}
-
-.action-buttons .word-count {
-  width: 194px;
-  height: 21px;
-  position: absolute;
-  left: 535px;
-  top: 10px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.action-buttons .word-count .icon {
-  width: 18px;
-  height: 18px;
-  position: relative;
-  border: 1.5px black solid;
-}
-
-.action-buttons .word-count .icon::before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 8px;
-  left: 4px;
-  top: 5px;
-  border: 1.5px black solid;
-}
-
-.action-buttons .word-count .label {
-  color: #1F1F1F;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 500;
-}
-
-.user-info {
-  width: 164px;
-  position: absolute;
-  left: 66px;
-  top: 914px;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-}
-
-.user-info .avatar {
-  width: 58px;
-  height: 58px;
-  border-radius: 300px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-info .label {
-  color: white;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
+.action-buttons .regenerate-button {
+    background-color: #11B063;
+    color: white;
 }
 
 .input-box {
-  width: 694px;
-  height: 56px;
-  position: absolute;
-  left: 547px;
-  top: 916px;
-  border-radius: 10px;
-  border: 1px rgba(68, 84, 144, 0.29) solid;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 360px;
-  padding: 16px 30px;
-}
-
-.input-box .icon {
-  width: 24px;
-  height: 24px;
-  background: #445490;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-}
-
-.input-box .label {
-  position: absolute;
-  left: 34px;
-  top: 0;
-  color: rgba(68, 84, 144, 0.47);
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(68, 84, 144, 0.29);
+    gap: 20px;
 }
 
 .send-button {
-  width: 56px;
-  height: 56px;
-  position: absolute;
-  left: 638px;
-  top: 916px;
-  background: #3B59E0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: 1px rgba(68, 84, 144, 0.29) solid;
+    background: #3B59E0;
+    border-radius: 0.5rem;
 }
