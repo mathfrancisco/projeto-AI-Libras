@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tradutor de Língua de Sinais</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sign Language Recognition</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Tradutor de Língua de Sinais</h1>
-    </header>
+    <div class="container">
+        <h1>Sign Language Recognition System</h1>
 
-    <main>
+        <!-- Real-Time Translation -->
         <section id="real-time-translation">
             <h2>Tradução em Tempo Real</h2>
-            <video id="translationVideo" autoplay muted></video>
+            <video id="translationVideo" autoplay></video>
             <button id="startTranslation">Iniciar Tradução</button>
             <div id="translationResult"></div>
         </section>
 
+        <!-- Text and Voice Input -->
         <section id="text-voice-input">
             <h2>Entrada de Texto e Voz</h2>
             <textarea id="textInput" placeholder="Digite sua mensagem aqui..."></textarea>
-            <div class="button-group">
-                <button id="submitText">Enviar Texto</button>
-                <button id="startVoiceInput">Usar Microfone</button>
-            </div>
+            <button id="submitText">Enviar Texto</button>
+            <button id="startVoiceInput">Usar Microfone</button>
         </section>
 
+        <!-- Language Selection -->
         <section id="language-selection">
             <h2>Seleção de Idioma</h2>
             <label for="languageSelect">Escolha seu idioma:</label>
@@ -39,32 +38,52 @@
             </select>
         </section>
 
+        <!-- Custom Settings -->
         <section id="custom-settings">
             <h2>Configurações Personalizadas</h2>
-            <div class="setting">
-                <label for="translationSpeed">Velocidade da Tradução:</label>
-                <input type="range" id="translationSpeed" min="1" max="10" value="5">
-            </div>
-            <div class="setting">
-                <label for="feedbackType">Feedback Sensorial:</label>
-                <select id="feedbackType">
-                    <option value="none">Nenhum</option>
-                    <option value="vibration">Vibração</option>
-                    <option value="visual">Notificação Visual</option>
-                </select>
-            </div>
+            <label for="translationSpeed">Velocidade da Tradução:</label>
+            <input type="range" id="translationSpeed" min="1" max="10" value="5">
+            
+            <label for="feedbackType">Feedback Sensorial:</label>
+            <select id="feedbackType">
+                <option value="none">Nenhum</option>
+                <option value="vibration">Vibração</option>
+                <option value="visual">Notificação Visual</option>
+            </select>
+
             <button id="saveSettings">Salvar Configurações</button>
         </section>
 
+        <!-- Conversation History -->
         <section id="conversation-history">
             <h2>Histórico de Conversas</h2>
             <ul id="historyList"></ul>
         </section>
 
+        <!-- Support and Help -->
         <section id="support-help">
             <h2>Suporte e Ajuda</h2>
             <div class="faq">
                 <h3>FAQs</h3>
-                <details>
-                    <summary>Como usar o sistema?</summary>
-                    <p>Você pode iniciar a tradução clicando no botão "Iniciar Tra
+                <!-- Add FAQ content here -->
+                <p>Pergunta Frequente: Como usar o sistema?</p>
+                <p>Resposta: Você pode iniciar a tradução clicando no botão "Iniciar Tradução".</p>
+
+                <!-- Add more FAQs as needed -->
+
+                <h3>Tutoriais em Vídeo</h3>
+                <!-- Embed tutorial videos here -->
+
+                <h3>Sugestões</h3>
+                <form id="feedbackForm">
+                    <textarea placeholder="Deixe sua sugestão aqui..."></textarea><br/>
+                    <button type="submit">Enviar Sugestão</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
