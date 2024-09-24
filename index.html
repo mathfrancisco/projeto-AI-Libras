@@ -1,25 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Language Recognition</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tradutor de Língua de Sinais</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Sign Language Recognition Demo</h1>
-        <video id="video" autoplay></video>
-        <div class="controls">
-            <button id="startButton">Start Recognition</button>
-            <button id="stopButton" disabled>Stop Recognition</button>
-        </div>
-        <div id="result" class="result"></div>
-        <footer>
-            <p>&copy; 2024 Sign Language Recognition Project</p>
-        </footer>
-    </div>
+    <header>
+        <h1>Tradutor de Língua de Sinais</h1>
+    </header>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <main>
+        <section id="real-time-translation">
+            <h2>Tradução em Tempo Real</h2>
+            <video id="translationVideo" autoplay muted></video>
+            <button id="startTranslation">Iniciar Tradução</button>
+            <div id="translationResult"></div>
+        </section>
+
+        <section id="text-voice-input">
+            <h2>Entrada de Texto e Voz</h2>
+            <textarea id="textInput" placeholder="Digite sua mensagem aqui..."></textarea>
+            <div class="button-group">
+                <button id="submitText">Enviar Texto</button>
+                <button id="startVoiceInput">Usar Microfone</button>
+            </div>
+        </section>
+
+        <section id="language-selection">
+            <h2>Seleção de Idioma</h2>
+            <label for="languageSelect">Escolha seu idioma:</label>
+            <select id="languageSelect">
+                <option value="libras">Libras</option>
+                <option value="asl">ASL</option>
+                <option value="portuguese">Português</option>
+                <option value="english">Inglês</option>
+            </select>
+        </section>
+
+        <section id="custom-settings">
+            <h2>Configurações Personalizadas</h2>
+            <div class="setting">
+                <label for="translationSpeed">Velocidade da Tradução:</label>
+                <input type="range" id="translationSpeed" min="1" max="10" value="5">
+            </div>
+            <div class="setting">
+                <label for="feedbackType">Feedback Sensorial:</label>
+                <select id="feedbackType">
+                    <option value="none">Nenhum</option>
+                    <option value="vibration">Vibração</option>
+                    <option value="visual">Notificação Visual</option>
+                </select>
+            </div>
+            <button id="saveSettings">Salvar Configurações</button>
+        </section>
+
+        <section id="conversation-history">
+            <h2>Histórico de Conversas</h2>
+            <ul id="historyList"></ul>
+        </section>
+
+        <section id="support-help">
+            <h2>Suporte e Ajuda</h2>
+            <div class="faq">
+                <h3>FAQs</h3>
+                <details>
+                    <summary>Como usar o sistema?</summary>
+                    <p>Você pode iniciar a tradução clicando no botão "Iniciar Tra
