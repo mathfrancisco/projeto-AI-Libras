@@ -1,3 +1,28 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.post('/recognize-gesture', (req, res) => {
+  const gestureData = req.body;
+  // Processar os dados de gestos de mão aqui
+  const recognitionResult = recognizeGesture(gestureData);
+  res.json(recognitionResult);
+});
+
+app.listen(port, () => {
+  console.log(`API está rodando na porta ${port}`);
+});
+fetch('/recognize-gesture', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(gestureData)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
+
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(section => {
