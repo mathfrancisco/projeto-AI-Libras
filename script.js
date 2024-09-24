@@ -12,15 +12,38 @@ function logout() {
 }
 
 // Real-Time Translation
-document.getElementById('startTranslation').addEventListener('click', () => {
+document.getElementById('startTranslation').addEventListener('click', async () => {
     const video = document.getElementById('translationVideo');
+    
+    // Inicializar o fluxo de vídeo da câmera
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
+        .then(async (stream) => {
             video.srcObject = stream;
-            // Call function to process video frames for translation
+
+            // Carregar o modelo de detecção de mão do TensorFlow.js
+            const model = await handpose.load();
+            console.log("Modelo de detecção de mãos carregado!");
+
+            // Processar cada frame de vídeo
+            video.addEventListener('loadeddata', async () => {
+                const detectHands = async () => {
+                    const predictions = await model.estimateHands(video);
+                    if (predictions.length > 0) {
+                        console.log(predictions);
+                        // Aqui você pode processar as predições para reconhecer sinais
+                        const hand = predictions[0];
+                        // Exibir resultados ou passar para função de reconhecimento
+                        processHandGesture(hand);
+                    }
+                    requestAnimationFrame(detectHands); // Continue processando os frames
+                };
+
+                detectHands();
+            });
         })
         .catch(err => console.error('Error accessing webcam:', err));
 });
+
 
 // Text and Voice Input
 document.getElementById('submitText').addEventListener('click', () => {
