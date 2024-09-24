@@ -16,6 +16,177 @@
 }
 
 .top-section {
+  width: 100%;
+  height: 173px;
+  background: #3B59E0;
+}
+
+.profile-image {
+  position: absolute;
+  left: 40px;
+  top: 66px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.text-content {
+  position: absolute;
+  left: 113px;
+  top: 71px;
+}
+
+.text-content .title {
+  color: white;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold; /* Changed to bold for emphasis */
+}
+
+.text-content .subtitle {
+  color: white;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.action-buttons {
+  position: absolute;
+  left: 40px;
+  top: calc(173px + 49px); /* Adjusted for dynamic spacing */
+}
+
+.button {
+  display: flex; /* Changed to flex for better alignment */
+  justify-content: flex-start; /* Aligns items to the start */
+  align-items: center; 
+  gap: 15px; 
+}
+
+.button .icon {
+  width: 20px; 
+  height: auto; /* Set to auto for responsiveness */
+}
+
+.button .label {
+  color: white; 
+  font-size: 16px; 
+}
+
+.separator {
+  width: calc(100% - (40 *2)); /* Full width minus padding */
+  height: auto; 
+  margin-top: calc(40px + (15 * number_of_buttons)); /* Dynamic spacing based on buttons */
+}
+
+.right-panel {
+    width: calc(100% - (344px + (40 *2))); /* Adjusted for responsive design */
+    height: calc(100% - (40 *2)); /* Full height minus padding */
+    position:absolute; 
+    right:0; 
+    top:0; 
+    background-color:#FFF; /* Added background for clarity */
+    border-top-right-radius:30px; /* Rounded corners */
+    border-bottom-right-radius:30px; /* Rounded corners */
+    overflow-y:auto; /* Allow scrolling if content overflows */
+}
+
+.message-box {
+    width: calc(100% - (40 *2)); /* Full width with padding */
+    padding:20px; 
+    margin-bottom:15px; /* Spacing between messages */
+    background:#232121; 
+    border-left:#4C5FA1 solid; 
+    display:flex; 
+    align-items:flex-start; 
+    gap:30px; 
+}
+
+.message-box .avatar {
+    width:70px; 
+    height:auto; 
+    border-radius:50%; 
+}
+
+.message-box .message-content {
+    color:#D4D4D4; 
+    font-size:16px; 
+}
+
+/* Action Buttons in Right Panel */
+.action-buttons {
+   display:flex; 
+   justify-content:flex-start; 
+   gap:15px; 
+   margin-top:auto; /* Pushes buttons to the bottom */
+   padding-top:20px; /* Space above buttons */
+}
+
+/* Individual Action Buttons */
+.action-buttons .button {
+   padding:.5rem .75rem; /* Padding for buttons */
+   border-radius:.5rem; /* Rounded corners for buttons */
+   display:flex; 
+   justify-content:center; 
+   align-items:center; 
+}
+
+/* Delete Button Styles */
+.action-buttons .button.delete-button {
+   background-color:#FB2323;
+   color:white;
+}
+
+/* Regenerate Button Styles */
+.action-buttons .button.regenerate-button {
+   background-color:#11B063;
+   color:white;
+}
+
+/* Word Count Display */
+.action-buttons .word-count {
+   display:flex; 
+   align-items:center; 
+}
+
+/* User Info Section */
+.user-info {
+   display:flex; 
+   align-items:center; 
+   gap:.5rem; /* Space between avatar and label */
+}
+
+/* Input Box Styles */
+.input-box {
+   display:flex; 
+   align-items:center; 
+   border-radius:.5rem; 
+   border:.5px rgba(68,84,144,.29) solid;
+}
+
+/* Send Button Styles */
+.send-button {
+   background:#3B59E0;
+   border-radius:.5rem;.5rem
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #F0F0F0;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.left-panel {
+  width: 344px;
+  height: 100%;
+  position: absolute;
+  background: #3C70E7;
+  border-top-left-radius: 58px;
+}
+
+.top-section {
   width: 344px;
   height: 173px;
   position: absolute;
