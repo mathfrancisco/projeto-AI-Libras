@@ -43,6 +43,18 @@ document.getElementById('startTranslation').addEventListener('click', async () =
         })
         .catch(err => console.error('Error accessing webcam:', err));
 });
+function processHandGesture(hand) {
+    // Aqui você pode processar as posições dos dedos para reconhecer o gesto.
+    const landmarks = hand.landmarks;
+
+    // Exemplo simples de processamento:
+    // Verificar se o dedo indicador está levantado (posição y mais alta que a palma)
+    if (landmarks[8][1] < landmarks[0][1]) {
+        document.getElementById('translationResult').innerText = "Gesto detectado: Sinal de positivo";
+    } else {
+        document.getElementById('translationResult').innerText = "Nenhum gesto reconhecido";
+    }
+}
 
 
 // Text and Voice Input
