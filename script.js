@@ -39,34 +39,47 @@ function logout() {
 // Real-Time Translation
 document.getElementById('startTranslation').addEventListener('click', async () => {
     const video = document.getElementById('translationVideo');
-    
+
     // Inicializar o fluxo de vídeo da câmera
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(async (stream) => {
+        .then((stream) => {
             video.srcObject = stream;
 
-            // Carregar o modelo de detecção de mão do TensorFlow.js
-            const model = await handpose.load();
-            console.log("Modelo de detecção de mãos carregado!");
+            // Quando o vídeo estiver carregado, começar a capturar frames
+            video.addEventListener('loadeddata', () => {
+                const captureFrames = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Processar cada frame de vídeo
-            video.addEventListener('loadeddata', async () => {
-                const detectHands = async () => {
-                    const predictions = await model.estimateHands(video);
-                    if (predictions.length > 0) {
-                        console.log(predictions);
-                        // Aqui você pode processar as predições para reconhecer sinais
-                        const hand = predictions[0];
-                        // Exibir resultados ou passar para função de reconhecimento
-                        processHandGesture(hand);
-                    }
-                    requestAnimationFrame(detectHands); // Continue processando os frames
+                    // Obter os dados da imagem do frame
+                    const imageData = canvas.toDataURL('image/jpeg');
+
+                    // Enviar os frames para o backend Python para processamento
+                    fetch('/recognize-gesture', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ image: imageData })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('translationResult').innerText = `Gesto detectado: ${data.gesture}`;
+                    })
+                    .catch(error => console.error('Erro ao reconhecer gesto:', error));
+
+                    // Continuar capturando frames a cada 200ms
+                    setTimeout(captureFrames, 200);
                 };
 
-                detectHands();
+                // Iniciar captura de frames
+                captureFrames();
             });
         })
-        .catch(err => console.error('Error accessing webcam:', err));
+        .catch(err => console.error('Erro ao acessar webcam:', err));
 });
 function processHandGesture(hand) {
     // Aqui você pode processar as posições dos dedos para reconhecer o gesto.
