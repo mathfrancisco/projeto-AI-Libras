@@ -1,3 +1,17 @@
+
+function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function logout() {
+            // Implement logout functionality here
+            alert('Você saiu do sistema.');
+        }
 // Real-Time Translation
 document.getElementById('startTranslation').addEventListener('click', () => {
     const video = document.getElementById('translationVideo');
