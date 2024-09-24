@@ -1,40 +1,48 @@
-
-
+// Função para mostrar a seção selecionada e esconder as outras
 function showSection(sectionId) {
+    // Seleciona todas as seções de conteúdo
     const sections = document.querySelectorAll('.content-section');
+    
+    // Esconde todas as seções
     sections.forEach(section => {
         section.style.display = 'none';
     });
+    
+    // Mostra a seção correspondente ao ID fornecido
     document.getElementById(sectionId).style.display = 'block';
 }
 
+// Função para sair do sistema
 function logout() {
     alert('Você saiu do sistema.');
-    // More functionality like clearing session can be added here
+    // Mais funcionalidades, como limpar a sessão, podem ser adicionadas aqui
 }
 
-// Real-Time Translation
+// Tradução em Tempo Real
 document.getElementById('startTranslation').addEventListener('click', async () => {
     const video = document.getElementById('translationVideo');
 
-    // Inicializar o fluxo de vídeo da câmera
+    // Inicializa o fluxo de vídeo da câmera
     navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
+            // Atribui o fluxo de vídeo ao elemento de vídeo
             video.srcObject = stream;
 
             // Quando o vídeo estiver carregado, começar a capturar frames
             video.addEventListener('loadeddata', () => {
                 const captureFrames = () => {
+                    // Cria um canvas para desenhar o vídeo
                     const canvas = document.createElement('canvas');
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     const ctx = canvas.getContext('2d');
+                    // Desenha o vídeo no canvas
                     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-                    // Obter os dados da imagem do frame
+                    // Obtém os dados da imagem do frame
                     const imageData = canvas.toDataURL('image/jpeg');
 
-                    // Enviar os frames para o backend Python para processamento
+                    // Envia os frames para o backend Python para processamento
                     fetch('/recognize-gesture', {
                         method: 'POST',
                         headers: {
@@ -44,20 +52,23 @@ document.getElementById('startTranslation').addEventListener('click', async () =
                     })
                     .then(response => response.json())
                     .then(data => {
+                        // Atualiza o resultado da tradução na tela
                         document.getElementById('translationResult').innerText = `Gesto detectado: ${data.gesture}`;
                     })
                     .catch(error => console.error('Erro ao reconhecer gesto:', error));
 
-                    // Continuar capturando frames a cada 200ms
+                    // Continua capturando frames a cada 200ms
                     setTimeout(captureFrames, 200);
                 };
 
-                // Iniciar captura de frames
+                // Inicia a captura de frames
                 captureFrames();
             });
         })
         .catch(err => console.error('Erro ao acessar webcam:', err));
 });
+
+// Função para processar gestos das mãos
 function processHandGesture(hand) {
     // Aqui você pode processar as posições dos dedos para reconhecer o gesto.
     const landmarks = hand.landmarks;
@@ -71,72 +82,81 @@ function processHandGesture(hand) {
     }
 }
 
-
-// Text and Voice Input
+// Entrada de Texto e Voz
 document.getElementById('submitText').addEventListener('click', () => {
     const text = document.getElementById('textInput').value;
-    // Process text input for translation or recognition
+    // Processa a entrada de texto para tradução ou reconhecimento
 });
 
+// Início da Entrada de Voz
 document.getElementById('startVoiceInput').addEventListener('click', () => {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'pt-BR'; // Set language as Portuguese
+    recognition.lang = 'pt-BR'; // Define o idioma como português
     recognition.interimResults = false;
 
+    // Quando o reconhecimento de fala resultar, preenche o textarea com o texto reconhecido
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
-        document.getElementById('textInput').value = transcript; // Populate textarea with recognized text
+        document.getElementById('textInput').value = transcript; // Popula a textarea com o texto reconhecido
     };
 
+    // Captura erro de reconhecimento de fala
     recognition.onerror = (event) => {
-        console.error("Speech recognition error:", event.error);
+        console.error("Erro de reconhecimento de fala:", event.error);
     };
 
+    // Inicia o reconhecimento de fala
     recognition.start();
 });
 
-// Language Selection
+// Seleção de Idioma
 document.getElementById('languageSelect').addEventListener('change', (event) => {
     const selectedLanguage = event.target.value;
-    // Update application language settings based on selection
+    // Atualiza as configurações de idioma da aplicação com base na seleção
 });
 
-// Custom Settings
+// Configurações Personalizadas
 document.getElementById('saveSettings').addEventListener('click', () => {
     const speed = document.getElementById('translationSpeed').value;
     const feedback = document.getElementById('feedbackType').value;
     
+    // Salva as configurações no armazenamento local
     localStorage.setItem('translationSpeed', speed);
     localStorage.setItem('feedbackType', feedback);
     
     alert('Configurações salvas!');
 });
 
-// Conversation History
+// Histórico de Conversas
 function loadConversationHistory() {
     const historyList = document.getElementById('historyList');
+    // Carrega o histórico de conversas do armazenamento local
     const conversations = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     
+    // Exibe cada conversa na lista
     conversations.forEach(conversation => {
         const listItem = document.createElement('li');
         listItem.textContent = conversation;
         historyList.appendChild(listItem);
     });
 }
+
+// Carrega o histórico de conversas quando a página é aberta
 loadConversationHistory();
 
-// Support and Help
+// Suporte e Ajuda
 document.getElementById('feedbackForm').addEventListener('submit', (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Impede o envio padrão do formulário
     
     const suggestion = event.target.querySelector('textarea').value;
     
+    // Armazena as sugestões do usuário no armazenamento local
     let suggestions = JSON.parse(localStorage.getItem('userSuggestions')) || [];
     suggestions.push(suggestion);
     
+    // Salva as sugestões no armazenamento local
     localStorage.setItem('userSuggestions', JSON.stringify(suggestions));
     
     alert('Sugestão enviada com sucesso!');
     
-    event.target.reset(); // Reset the form
-});
+    event.target.reset(); // Reseta o formulário
