@@ -1,56 +1,51 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    text-align: center;
-    background: white;
+/* Real-time Translation */
+#real-time-translation {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
 }
 
-video {
+/* Text and Voice Input */
+#text-voice-input {
+    margin: 20px;
+}
+#text-voice-input textarea {
     width: 100%;
-    max-width: 320px;
-    height: auto;
-    border: 2px solid #333;
+    height: 100px;
 }
 
-.controls {
-    margin-top: 10px;
+/* Language Selection */
+#language-selection {
+    margin: 20px;
 }
 
-button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Custom Settings */
+#custom-settings {
+    margin: 20px;
+}
+#custom-settings input[type=range] {
+    width: 100%;
 }
 
-button:hover {
-    background-color: #218838;
+/* Conversation History */
+#conversation-history {
+    margin: 20px;
+}
+#historyList {
+    list-style-type: none;
 }
 
-button[disabled] {
-    background-color: #ccc;
+/* Support and Help */
+#support-help {
+    margin: 20px;
 }
-
-.result {
-    margin-top: 20px;
-    font-size: 20px;
+#support-help .faq {
+   border: 1px solid #ccc; 
+   padding: 10px; 
+   border-radius: 8px; 
 }
-
-footer {
-    margin-top: 20px;
+#support-help textarea {
+   width: calc(100% - 22px); 
+   height: 50px; 
 }
