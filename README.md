@@ -1,0 +1,2 @@
+## Visão Geral
+**O Sistema de Reconhecimento de Linguagem de Sinais AI é uma aplicação web projetada para facilitar a comunicação por meio da linguagem de sinais. Este sistema utiliza capacidades de tradução em tempo real, reconhecimento de voz e configurações amigáveis para melhorar a interação entre usuários que podem ter diferentes preferências de comunicação. A aplicação é especialmente voltada para promover a inclusão da comunidade surda e com deficiência auditiva.**
