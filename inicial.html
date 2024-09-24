@@ -10,88 +10,53 @@
     <h1>AI Sign</h1>
   </body>
 </html>
-<div class="container"></div>
-  <div class="left-panel">
-    <div class="top-section">
-      <img src="https://via.placeholder.com/56x56" alt="Profile Image" class="profile-image">
-      <div class="text-content">
-        <div class="title">Lorem</div>
-        <div class="subtitle">Lorem ipsum dolor sit amet</div>
-      </div>
+<body>
+    <div class="left-panel">
+        <h1>AI Sign</h1>
+        <div class="action-buttons">
+            <div class="button" onclick="showSection('home')">Início</div>
+            <div class="button" onclick="showSection('config')">Configurações</div>
+            <div class="button" onclick="showSection('faq')">Guias e FAQ</div>
+            <div class="button" onclick="showSection('suggestions')">Sugestões</div>
+            <div class="button" onclick="logout()">Sair</div>
+        </div>
+        <div class="separator"></div>
     </div>
-    <div class="action-buttons">
-      <div class="button">
-        <div class="icon"></div>
-        <div class="label">Lorem ipsum dolor</div>
-      </div>
-      <div class="button">
-        <div class="icon"></div>
-        <div class="label">Lorem ipsum dolor sit</div>
-      </div>
-      <div class="button">
-        <div class="icon"></div>
-        <div class="label">Lorem ipsum dolor</div>
-      </div>
-      <div class="button">
-        <div class="icon"></div>
-        <div class="label">Lorem ipsum dolor sit</div>
-      </div>
-      <div class="button">
-        <div class="icon-upgrade"></div>
-        <div class="label">Upgrade</div>
-      </div>
-      <div class="button">
-        <div class="icon-faq"></div>
-        <div class="label">Guias e FAQ</div>
-      </div>
-      <div class="button">
-        <div class="icon-settings"></div>
-        <div class="label">Configurações</div>
-      </div>
-      <div class="button">
-        <div class="icon-logout"></div>
-        <div class="label">Sair</div>
-      </div>
+
+    <div class="right-panel">
+        <section id="home" class="content-section">
+            <h2>Bem-vindo ao Sistema de Reconhecimento de Linguagem de Sinais</h2>
+            <p>Use as opções à esquerda para navegar.</p>
+        </section>
+
+        <section id="config" class="content-section" style="display:none;">
+            <h2>Configurações Personalizadas</h2>
+            <label for="translationSpeed">Velocidade da Tradução:</label>
+            <input type="range" id="translationSpeed" min="1" max="10" value="5"><br/>
+            
+            <label for="feedbackType">Feedback Sensorial:</label>
+            <select id="feedbackType">
+                <option value="none">Nenhum</option>
+                <option value="vibration">Vibração</option>
+                <option value="visual">Notificação Visual</option>
+            </select><br/>
+
+            <button id="saveSettings">Salvar Configurações</button>
+        </section>
+
+        <section id="faq" class="content-section" style="display:none;">
+            <h2>FAQs</h2>
+            <p>Pergunta Frequente: Como usar o sistema?</p>
+            <p>Resposta: Você pode iniciar a tradução clicando no botão "Iniciar Tradução".</p>
+        </section>
+
+        <section id="suggestions" class="content-section" style="display:none;">
+            <h2>Sugestões</h2>
+            <form id="feedbackForm">
+                <textarea placeholder="Deixe sua sugestão aqui..."></textarea><br/>
+                <button type="submit">Enviar Sugestão</button>
+            </form>
+        </section>
+
     </div>
-    <div class="separator"></div>
-  </div>
-  <div class="right-panel">
-    <div class="message-box">
-      <div class="avatar">
-        <img src="https://via.placeholder.com/70x70" alt="Avatar">
-      </div>
-      <div class="message-content">Lorem ipsum dolor sit amet consectetur. Augue justo vulputate posuere dignissim. Ac luctus ridiculus natoque ullamcorper. Duis elit.</div>
-    </div>
-    <div class="message-box">
-      <div class="avatar">
-        <img src="https://via.placeholder.com/70x70" alt="Avatar">
-      </div>
-      <div class="message-content">Lorem ipsum dolor sit amet consectetur. Aenean feugiat hac maecenas eleifend quisque fringilla mattis lacus tempor. Ultrices.</div>
-    </div>
-    <div class="action-buttons">
-      <div class="button delete-button">
-        <div class="icon"></div>
-        <div class="label">Delete last generation</div>
-      </div>
-      <div class="button regenerate-button">
-        <div class="icon"></div>
-        <div class="label">Regenerate Generation</div>
-      </div>
-      <div class="word-count">
-        <div class="icon"></div>
-        <div class="label">Palavras Usadas: 12000</div>
-      </div>
-    </div>
-    <div class="user-info">
-      <div class="avatar">
-        <img src="https://via.placeholder.com/58x58" alt="User Avatar">
-      </div>
-      <div class="label">Ai assistente</div>
-    </div>
-    <div class="input-box">
-      <div class="icon"></div>
-      <div class="label">Traduza qualquer sinal para texto</div>
-    </div>
-    <div class="send-button"></div>
-  </div>
-</div>
+</body>body.
