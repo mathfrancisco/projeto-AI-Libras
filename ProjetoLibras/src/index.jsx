@@ -5,6 +5,7 @@ import { TelaInical } from './screens/TelaInical';
 import { Cadastro } from './screens/Cadastro';
 import { TranslationPage } from './screens/Tradutor'; // Tela de Tradução
 
+
 const app = document.getElementById('app');
 const root = ReactDOMClient.createRoot(app);
 
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<TelaInical />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/tradutor" element={<TranslationPage />} /> {/* Nova rota para a página de tradução */}
+
       </Routes>
     </Router>
   </React.StrictMode>
