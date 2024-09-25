@@ -1,50 +1,59 @@
-
-
-<section class="registration-container">
-  <div class="registration-content">
-    <header class="header-section">
-      <div class="logo-container">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/80050c4d96ac4e8e05cccea7ae53f1cb28af44a4e82cc5571d86742b3f19dee1?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="logo-image" alt="AI Sign Logo" />
-        <div class="logo-text">AI Sign</div>
-      </div>
-      <nav class="nav-links">
-        <a href="#" class="login-link">Entrar</a>
-        <a href="#" class="register-link">Cadastrar</a>
-      </nav>
-    </header>
-    <h1 class="register-title">Cadastrar</h1>
-    <form>
-      <div class="form-field">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9932fe85a4ca3fda91f29383c9eb95f06ebe6b21877ac2aa7d6ac98149eb8f01?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
-        <label for="email-input" class="visually-hidden">Email</label>
-        <input type="email" id="email-input" class="field-input" placeholder="Email" />
-      </div>
-      <div class="form-field">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/68bad29a1eebfd996ef28b66f7c10845050458d5491d0662934a1966bcaf6181?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
-        <label for="password-input" class="visually-hidden">Senha</label>
-        <input type="password" id="password-input" class="field-input" placeholder="Senha" />
-      </div>
-      <div class="form-field">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/55b15b9bd589f9a13e03442148de6cea6c8bcb16597ec2b27e8edf45b4a05ddb?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
-        <label for="confirm-password-input" class="visually-hidden">Confirmação de Senha</label>
-        <input type="password" id="confirm-password-input" class="field-input" placeholder="Confirmação de Senha" />
-      </div>
-      <div class="form-field">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/76284aad6cc57373440f5c2ca4509a8d271d9665dd0aaff817452502a3a05f26?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
-        <label for="phone-input" class="visually-hidden">Telefone</label>
-        <input type="tel" id="phone-input" class="field-input" placeholder="Telefone" />
-      </div>
-      <div class="form-field">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a496451c3a189e9f96b258234d62f145dc4f3e2de097f89a31d54e804a21d66f?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
-        <label for="name-input" class="visually-hidden">Nome</label>
-        <input type="text" id="name-input" class="field-input" placeholder="Nome" />
-      </div>
-    </form>
-    <p class="instant-register-text">Ou use o registro instantâneo</p>
-    <button class="google-register-button">
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/534c7386-29f6-4ae1-b791-b323aa4e7a4b?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="google-icon" alt="Google logo" />
-      <span class="google-text">Cadastre-se com Google</span>
-    </button>
-    <p class="login-prompt">Já tem uma conta? <a href="#">Entrar</a></p>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastro.css">
+    <title>Cadastro - AI Sign</title>
+</head>
+<body>
+    <section class="registration-container">
+        <div class="registration-content">
+            <header class="header-section">
+                <div class="logo-container">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/80050c4d96ac4e8e05cccea7ae53f1cb28af44a4e82cc5571d86742b3f19dee1?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="logo-image" alt="AI Sign Logo" />
+                    <div class="logo-text">AI Sign</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="login-link">Entrar</a>
+                    <a href="#" class="register-link">Cadastrar</a>
+                </nav>
+            </header>
+            <h1 class="register-title">Cadastrar</h1>
+            <form>
+                <div class="form-field">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9932fe85a4ca3fda91f29383c9eb95f06ebe6b21877ac2aa7d6ac98149eb8f01?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
+                    <label for="email-input" class="visually-hidden">Email</label>
+                    <input type="email" id="email-input" class="field-input" placeholder="Email" required />
+                </div>
+                <div class="form-field">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/68bad29a1eebfd996ef28b66f7c10845050458d5491d0662934a1966bcaf6181?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
+                    <label for="password-input" class="visually-hidden">Senha</label>
+                    <input type="password" id="password-input" class="field-input" placeholder="Senha" required />
+                </div>
+                <div class="form-field">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/55b15b9bd589f9a13e03442148de6cea6c8bcb16597ec2b27e8edf45b4a05ddb?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
+                    <label for="confirm-password-input" class="visually-hidden">Confirmação de Senha</label>
+                    <input type="password" id="confirm-password-input" class="field-input" placeholder="Confirmação de Senha" required />
+                </div>
+                <div class="form-field">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/76284aad6cc57373440f5c2ca4509a8d271d9665dd0aaff817452502a3a05f26?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
+                    <label for="phone-input" class="visually-hidden">Telefone</label>
+                    <input type="tel" id="phone-input" class="field-input" placeholder="Telefone" required />
+                </div>
+                <div class="form-field">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a496451c3a189e9f96b258234d62f145dc4f3e2de097f89a31d54e804a21d66f?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="field-icon" alt="" />
+                    <label for="name-input" class="visually-hidden">Nome</label>
+                    <input type="text" id="name-input" class="field-input" placeholder="Nome" required />
+                </div>
+            </form>
+            <p class="instant-register-text">Ou use o registro instantâneo</p>
+            <button type="button" class="google-register-button">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/534c7386-29f6-4ae1-b791-b323aa4e7a4b?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="google-icon" alt="" />
+                <span class="google-text">Cadastre-se com Google</span>
+            </button>
+            <p class="login-prompt">Já tem uma conta? <a href="#">Entrar</a></p>
+        </div>
+    </section>
+</body>
+</html>
