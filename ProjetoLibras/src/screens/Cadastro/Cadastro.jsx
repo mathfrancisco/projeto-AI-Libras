@@ -18,12 +18,6 @@ export const Cadastro = () => {
         <div className="absolute w-[363px] h-[752px] top-[108px] left-[547px] rounded-xl">
           <div className="absolute w-[363px] h-[752px] top-0 left-0 rounded-xl">
             <div className="relative h-[464px] rounded-xl">
-              {/* Restante do código dos campos de cadastro */}
-              <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
-      <div className="bg-[#f0f0f0] w-[1440px] h-[1024px] relative">
-        <div className="absolute w-[363px] h-[752px] top-[108px] left-[547px] rounded-xl">
-          <div className="absolute w-[363px] h-[752px] top-0 left-0 rounded-xl">
-            <div className="relative h-[464px] rounded-xl">
               <div className="w-[363px] h-[73px] top-[92px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
                 <div className="absolute w-[317px] h-[73px] top-0 left-16">
                   <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
@@ -49,6 +43,9 @@ export const Cadastro = () => {
                   alt="Vector"
                   src="https://c.animaapp.com/j928kLmN/img/vector.svg"
                 />
+              </div>
+              <div className="w-[234px] top-1 left-16 font-bold text-[#324eff] text-[52px] absolute h-8 [font-family:'Roboto',Helvetica] tracking-[0] leading-8 whitespace-nowrap">
+                Cadastrar
               </div>
               <div className="w-[363px] h-[73px] top-[294px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
                 <div className="absolute w-[317px] h-[73px] top-0 left-16">
