@@ -1,1 +1,1 @@
-
+export { Tradutor } from "./Tradutor";
