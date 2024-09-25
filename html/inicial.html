@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>AI Sign</title>
+</head>
+<body>
+    <div class="tela-inicial">
+        <div class="overlap-wrapper">
+            <div class="overlap">
+                <div class="overlap-group">
+                    <div class="side-menu">
+                        <header class="rectangle-2"></header>
+                        <div class="profile-section">
+                            <img class="ellipse" src="img/ellipse-3.png" alt="Foto do Perfil" />
+                            <div class="user-info">
+                                <div class="text-wrapper-2">Lorem</div>
+                                <p class="p">Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                        <nav class="menu-options">
+                            <ul>
+                                <li class="frame" onclick="showSection('historico')">
+                                    <img class="vector" src="img/vector-2.svg" alt="Histórico" />
+                                    <span class="text-wrapper">Histórico de Conversas</span>
+                                </li>
+                                <li class="frame-2" onclick="showSection('novo-chat')">
+                                    <img class="img" src="img/gg-add.svg" alt="Novo Chat" />
+                                    <span class="text-wrapper">Novo Chat</span>
+                                </li>
+                                <li class="frame-3" onclick="showSection('traducao-tempo-real')">
+                                    <img class="vector" src="img/vector-3.svg" alt="Tradução em Tempo Real" />
+                                    <span class="text-wrapper">Tradução em Tempo Real</span>
+                                </li>
+                                <li class="frame-6" onclick="showSection('entrada-texto-voz')">
+                                    <img class="vector" src="img/image.svg" alt="Entrada de Texto e Voz" />
+                                    <span class="text-wrapper">Entrada de Texto e Voz</span>
+                                </li>
+                                <li class="frame-7" onclick="showSection('selecao-idioma')">
+                                    <img class="vector" src="img/vector-6.svg" alt="Seleção de Idioma" />
+                                    <span class="text-wrapper">Seleção de Idioma</span>
+                                </li>
+                                <li class="frame-8" onclick="showSection('configuracoes')">
+                                    <img class="vector" src="img/vector-7.svg" alt="Configurações Personalizadas" />
+                                    <span class="text-wrapper">Configurações Personalizadas</span>
+                                </li>
+                                <li class="frame-9">
+                                    <img class="img" src="img/integration-1.svg" alt="Upgrade" />
+                                    <span class="text-wrapper">Upgrade</span>
+                                </li>
+                                <li class="frame-10" onclick="showSection('suporte-ajuda')">
+                                    <img class="img" src="img/question-1.svg" alt="Suporte e Ajuda" />
+                                    <span class="text-wrapper">Suporte e Ajuda</span>
+                                </li>
+                                <li class="frame-11">
+                                    <img class="img" src="img/lets-icons-setting-line.svg" alt="Configurações" />
+                                    <span class="text-wrapper">Configurações</span>
+                                </li>
+                                <li class="frame-12" onclick="logout()">
+                                    <img class="img" src="img/majesticons-logout-line.svg" alt="Sair" />
+                                    <span class="text-wrapper">Sair</span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Área de conteúdo -->
+                    <div class="content-area">
+                        <!-- Histórico de Conversas -->
+                        <section id="historico" class="content-section">
+                            <h2>Histórico de Conversas</h2>
+                            <p>Aqui será exibido o histórico de conversas.</p>
+                        </section>
+
+                        <!-- Novo Chat -->
+                        <section id="novo-chat" class="content-section" style="display:none;">
+                            <h2>Novo Chat</h2>
+                            <p>Inicie um novo chat.</p>
+                        </section>
+
+                        <!-- Tradução em Tempo Real -->
+                        <section id="traducao-tempo-real" class="content-section" style="display:none;">
+                            <h2>Tradução em Tempo Real</h2>
+                            <video id="translationVideo"></video>
+                            <button id="startTranslation">Iniciar Tradução</button>
+                            <div id="translationResult"></div>
+                        </section>
+                        <div class="search-bar">
+                          <input type="text" placeholder="Pesquisar..." id="searchInput">
+                          <button id="searchButton">Buscar</button>
+                      </div>
+                      <!-- Dois Retângulos no meio -->
+                      <div class="rectangles">
+                        <div class="rectangle" id="rectangle1"></div>
+                        <div class="rectangle" id="rectangle2"></div>
+                    </div>
+                        <!-- Entrada de Texto e Voz -->
+                        <section id="entrada-texto-voz" class="content-section" style="display:none;">
+                            <h2>Entrada de Texto e Voz</h2>
+                            <textarea id="textInput"></textarea>
+                            <button id="submitText">Enviar Texto</button>
+                            <button id="startVoiceInput">Usar Microfone</button>
+                        </section>
+
+                        <!-- Seleção de Idioma -->
+                        <section id="selecao-idioma" class="content-section" style="display:none;">
+                            <h2>Seleção de Idioma</h2>
+                            <select id="languageSelect">
+                                <option value="pt">Português</option>
+                                <option value="en">Inglês</option>
+                                <option value="es">Espanhol</option>
+                            </select>
+                        </section>
+
+                        <!-- Configurações Personalizadas -->
+                        <section id="configuracoes" class="content-section" style="display:none;">
+                            <h2>Configurações Personalizadas</h2>
+                            <p>Ajuste suas configurações.</p>
+                        </section>
+
+                        <!-- Suporte e Ajuda -->
+                        <section id="suporte-ajuda" class="content-section" style="display:none;">
+                            <h2>Suporte e Ajuda</h2>
+                            <p>Entre em contato conosco para suporte.</p>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclusão do script JavaScript no final do body -->
+    <script src="js/script.js"></script>
+</body>
+</html>
