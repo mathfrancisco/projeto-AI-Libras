@@ -118,7 +118,7 @@ export const Cadastro = () => {
               {/* Botão de cadastrar */}
               <div
                 className="w-[102px] h-11 top-5 left-[436px] bg-[#181414] absolute rounded-xl cursor-pointer"
-                onClick={handleCadastrar} // Adiciona o evento onClick
+                onClick={handleCadastrar} // Evento de redirecionamento
               >
                 <div className="w-[78px] top-[5px] left-4 font-medium text-white text-base absolute h-8 [font-family:'Roboto',Helvetica] tracking-[0] leading-8 whitespace-nowrap">
                   Cadastrar
