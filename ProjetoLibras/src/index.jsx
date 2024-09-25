@@ -1,15 +1,13 @@
-import "../global.css";
-import React from "react";
-import ReactDOMClient from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { TelaInical } from "./screens/TelaInical"; // Tela Inicial
-import { Cadastro } from "./screens/Cadastro";    // Tela de Cadastro (adicione a importação)
+import React from 'react';
+import ReactDOMClient from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { TelaInical } from './screens/TelaInical';
+import { Cadastro } from './screens/Cadastro';
+import { TranslationPage } from './screens/Tradutor'; // Tela de Tradução
 
-// Pega o elemento DOM
-const app = document.getElementById("app");
+const app = document.getElementById('app');
 const root = ReactDOMClient.createRoot(app);
 
-// Renderiza a aplicação com o Router
 root.render(
   <React.StrictMode>
     <Router>
@@ -17,6 +15,7 @@ root.render(
         {/* Define as rotas */}
         <Route path="/" element={<TelaInical />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/tradutor" element={<TranslationPage />} /> {/* Nova rota para a página de tradução */}
       </Routes>
     </Router>
   </React.StrictMode>
