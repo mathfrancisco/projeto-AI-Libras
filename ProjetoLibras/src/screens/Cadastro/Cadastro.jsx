@@ -44,9 +44,9 @@ export const Cadastro = () => {
                   src="https://c.animaapp.com/j928kLmN/img/vector.svg"
                 />
               </div>
-              <div className="w-[234px] top-1 left-16 font-bold text-[#324eff] text-[52px] absolute h-8 [font-family:'Roboto',Helvetica] tracking-[0] leading-8 whitespace-nowrap">
-                Cadastrar
-              </div>
+              <div className="w-[234px] top-1 left-16 font-bold text-[#324eff] text-[52px] absolute h-8 [font-family:'Roboto',Helvetica] tracking-[0] leading-8 whitespace-nowrap cursor-pointer" // Adiciona cursor-pointer para indicar que é clicável
+                   onClick={handleCadastrar} // Evento de clique >
+                   Cadastrar</div>
               <div className="w-[363px] h-[73px] top-[294px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
                 <div className="absolute w-[317px] h-[73px] top-0 left-16">
                   <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
@@ -116,10 +116,7 @@ export const Cadastro = () => {
                 </div>
               </div>
               {/* Botão de cadastrar */}
-              <div
-                className="w-[102px] h-11 top-5 left-[436px] bg-[#181414] absolute rounded-xl cursor-pointer"
-                onClick={handleCadastrar} // Evento de redirecionamento
-              >
+        
                 <div className="w-[78px] top-[5px] left-4 font-medium text-white text-base absolute h-8 [font-family:'Roboto',Helvetica] tracking-[0] leading-8 whitespace-nowrap">
                   Cadastrar
                 </div>
