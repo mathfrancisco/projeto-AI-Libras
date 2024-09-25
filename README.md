@@ -33,5 +33,5 @@ Certifique-se de que você tenha as seguintes ferramentas instaladas:
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/projeto-assistente-virtual.git
-   cd projeto-assistente-virtual/frontend
+   git clone https://github.com/mathfrancisco/projeto-AI-Libras.git
+   cd projeto-assistente-virtual/ProjetoLibras
