@@ -1,0 +1,122 @@
+
+
+<section class="chat-interface">
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <div class="user-info">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9611edd4814e7a548d68a6fd4feaf5ad77f10454f52c44702fb66fdaf447b251?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="User Avatar" class="user-avatar" />
+        <div class="user-details">
+          <h2 class="user-name">Lorem</h2>
+          <p class="user-status">Lorem ipsum dolor sit amet</p>
+        </div>
+      </div>
+      <div class="conversation-history">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/67b04b071727a47230bfff36dbbe95acab5aad53adc7c23e1261cf1f2be55d65?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="History Icon" class="history-icon" />
+        <span class="history-text">Histórico de Conversas</span>
+      </div>
+      <div class="active-chat">
+        <div class="chat-title">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0069dd019c4bd3291a86f0d05297f50b555786cdbf785456d34b3b106379b83?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Chat Icon" class="chat-icon" />
+          <span>Lorem ipsum dolor</span>
+        </div>
+        <div class="chat-actions">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/394aa8269fccc60312da89fa4471d6a2b56069028d1489c1aa4dada037eff9ad?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Action 1" class="action-icon" />
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/423d25ac270bd8759431558dc15208d642ae9dc6a130f9e712cf1044566267b0?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Action 2" class="action-icon" />
+        </div>
+      </div>
+      <nav class="chat-list">
+        <div class="chat-item">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f57b8160d6e73c62fedef0f9386ed82de847f8363458a7878b60d6bfb92be4c0?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Chat Item Icon" class="chat-item-icon" />
+          <span>Lorem ipsum dolor sit</span>
+        </div>
+        <div class="chat-item">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/67b04b071727a47230bfff36dbbe95acab5aad53adc7c23e1261cf1f2be55d65?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Chat Item Icon" class="chat-item-icon" />
+          <span>Lorem ipsum dolor</span>
+        </div>
+        <div class="chat-item">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/67b04b071727a47230bfff36dbbe95acab5aad53adc7c23e1261cf1f2be55d65?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Chat Item Icon" class="chat-item-icon" />
+          <span>Lorem ipsum dolor sit</span>
+        </div>
+      </nav>
+      <div class="guides-faq">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8ed13dd3ab372349efe7aab334ec85e071cd70726fac53f85b914c4557429d23?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Guides Icon" class="guides-icon" />
+        <span class="guides-text">Guias e FAQ</span>
+      </div>
+    </header>
+    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/baf54116bb117876c0157f0306c3db6ea1f0937f07c3673823ff0cbcbe39ee07?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Divider" class="divider" />
+    <div class="upgrade-section">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5b4f1b68409eb8b4a10d8bfc4e766d9d63e3b16201a7e9061661c3c11819b284?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Upgrade Icon" class="upgrade-icon" />
+      <span class="upgrade-text">Upgrade</span>
+    </div>
+    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/baf54116bb117876c0157f0306c3db6ea1f0937f07c3673823ff0cbcbe39ee07?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Divider" class="divider" />
+    <div class="settings-section">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fecf15855c305b85e14c91509660ac42d12f7ee302761b4ce82ad81ca216bd6b?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Settings Icon" class="settings-icon" />
+      <span class="settings-text">Configurações</span>
+    </div>
+    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/baf54116bb117876c0157f0306c3db6ea1f0937f07c3673823ff0cbcbe39ee07?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Divider" class="divider" />
+    <footer class="footer-actions">
+      <div class="logout-action">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b109ac07fa3519e9716b1af4e062edd4bf90aded6da95bf4117d36166f9e1a11?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Logout Icon" class="logout-icon" />
+        <span class="logout-text">Sair</span>
+      </div>
+      <button class="new-chat-button">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/22987788893ddc2fe23be6763e2217952d9faf1711a0900c7eac2819b3dd2abd?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="New Chat Icon" class="new-chat-icon" />
+        <span class="new-chat-text">Novo Chat</span>
+      </button>
+      <div class="ai-assistant">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d8250c84ff602cf560279d18bdaa86532fa92867a1c2b92ee8caa5a926f0b7c4?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="AI Assistant Avatar" class="ai-avatar" />
+        <span class="ai-name">AI Luzia</span>
+      </div>
+    </footer>
+  </aside>
+  
+  <main class="main-content">
+    <section class="chat-messages">
+      <div class="user-message">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/260219bebb84dcdfc113b41f48c13bfa324d445443f32c1d20adff46669bbb67?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="User Avatar" class="user-message-avatar" />
+        <p class="user-message-text">
+          Lorem ipsum dolor sit amet consectetur. Aenean feugiat hac maecenas eleifend quisque fringilla mattis lacus tempor. Ultrices.
+        </p>
+      </div>
+      <div class="ai-message">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7269f968874a71c825c2bb47a092aae1e829d18078be92f4b30e03c58757ed15?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="AI Avatar" class="ai-message-avatar" />
+        <p class="ai-message-text">
+          Lorem ipsum dolor sit amet consectetur. Augue justo vulputate posuere dignissim. Ac luctus ridiculus natoque ullamcorper. Duis elit.
+        </p>
+      </div>
+    </section>
+    
+    <div class="chat-input-container">
+      <div class="chat-input-wrapper">
+        <div class="chat-actions">
+          <div class="action-buttons">
+            <button class="delete-button">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/048edb00b107d8bcc26684850e567b5cb7c1a8e9153e17cccea8c7ad776413be?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Delete Icon" class="delete-icon" />
+              <span>Delete last generation</span>
+            </button>
+            <button class="regenerate-button">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7d26ea5cfae32d73934375f33a6d4e4d76e339a6bec712338577fed405757da?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Regenerate Icon" class="regenerate-icon" />
+              <span>Regenerate Generation</span>
+            </button>
+          </div>
+          <div class="word-count">
+            <div class="word-count-wrapper">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/82aad2f169dba35f5d89487810c79898e53d21bd4638ecb3cdfc700ed09902f8?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Word Count Icon" class="word-count-icon" />
+              <span class="word-count-text">Palavras Usadas: 12000</span>
+            </div>
+          </div>
+        </div>
+        <form class="chat-input">
+          <div class="chat-input-field">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d09044d11b6eb6389cb739ff244a0ae43aa137945b81857b82b3d21198ffff8?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Input Icon" class="chat-input-icon" />
+            <label for="chatInput" class="visually-hidden">Traduza qualquer sinal para texto</label>
+            <input type="text" id="chatInput" class="chat-input-placeholder" placeholder="Traduza qualquer sinal para texto" aria-label="Traduza qualquer sinal para texto" />
+          </div>
+          <button type="submit" class="send-button" aria-label="Send message">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1105c8c-c773-4861-8c02-1180879f9b20?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" alt="Send Icon" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</section>
