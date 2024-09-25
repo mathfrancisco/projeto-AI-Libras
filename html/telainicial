@@ -1,55 +1,64 @@
-
-
-<section class="hero-section">
-  <nav class="nav-container">
-    <div class="logo-container">
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/015279e6bd7d3c0e9b102c51a8cd53da3b0202faf8337429751e5a8a9c451acd?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="logo-image" alt="AI Sign logo" />
-      <span class="logo-text">AI Sign</span>
-    </div>
-    <div class="nav-links">
-      <a href="#" class="login-link">Entrar</a>
-      <a href="#" class="signup-link">Cadastrar</a>
-    </div>
-  </nav>
-  
-  <main class="main-content">
-    <div class="content-wrapper">
-      <div class="image-column">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/78d9b2593f5e5443135b474980d1f6703a2fa6857dca58e59a8727a62fd616ea?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="hero-image" alt="Illustration representing AI Sign technology" />
-      </div>
-      <div class="text-column">
-        <div class="text-content">
-          <div class="title-wrapper">
-            <div class="title-part-1">
-              <h1 class="title-text-1">Transformando a experiência <span style="color: #000000;">De</span></h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AI Sign</title>
+</head>
+<body>
+    <section class="hero-section">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/015279e6bd7d3c0e9b102c51a8cd53da3b0202faf8337429751e5a8a9c451acd?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="logo-image" alt="AI Sign logo" />
+                <span class="logo-text">AI Sign</span>
             </div>
-            <div class="title-part-2">
-              <h1 class="title-text-2">comunicação</h1>
+            <div class="nav-links">
+                <a href="#" class="login-link">Entrar</a>
+                <a href="#" class="signup-link">Cadastrar</a>
             </div>
-          </div>
-          <p class="description">Nossa inteligência artificial empodera pessoas com deficiência auditiva, tornando o mundo mais acessível e inclusivo</p>
-        </div>
-      </div>
-    </div>
-    
-    <a href="#" class="cta-button">
-      <span class="cta-text">Comece Gratuitamente</span>
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3c4ec9760ba154c0b814af233c7e1813ba471a7b88c35ff0cbaa1c34502d04?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="cta-icon" alt="" />
-    </a>
-    
-    <section class="avatar-section">
-      <div class="avatar-content">
-        <div class="avatar-image-column">
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/843dd85779c750ced3e992ab504dcc7773a8473896ad047bfff13cb8f8a9da11?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="avatar-image" alt="3D avatar of Luzia, the AI Sign assistant" />
-        </div>
-        <div class="avatar-text-column">
-          <div class="avatar-text-content">
-            <h2 class="avatar-title">Apresentamos Luzia, o avatar 3D da AI Sign!</h2>
-            <p class="avatar-subtitle">Ela será sua companheira dedicada na jornada da comunicação.</p>
-            <p class="avatar-description">Luzia traduz a língua de sinais em tempo real, facilitando a interação entre deficientes auditivos e o mundo ao seu redor. Seja em conversas cotidianas, reuniões ou eventos, Luzia está aqui para garantir que você nunca perca uma palavra.</p>
-          </div>
-        </div>
-      </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="image-column">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/78d9b2593f5e5443135b474980d1f6703a2fa6857dca58e59a8727a62fd616ea?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="hero-image" alt="Illustration representing AI Sign technology" />
+                </div>
+                <div class="text-column">
+                    <div class="text-content">
+                        <div class="title-wrapper">
+                            <div class="title-part-1">
+                                <h1 class="title-text-1">Transformando a experiência <span style="color: #000000;">De</span></h1>
+                            </div>
+                            <div class="title-part-2">
+                                <h1 class="title-text-2">comunicação</h1>
+                            </div>
+                        </div>
+                        <p class="description">Nossa inteligência artificial empodera pessoas com deficiência auditiva, tornando o mundo mais acessível e inclusivo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="cta-button">
+                <span class="cta-text">Comece Gratuitamente</span>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3c4ec9760ba154c0b814af233c7e1813ba471a7b88c35ff0cbaa1c34502d04?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="cta-icon" alt="" />
+            </a>
+
+            <section class="avatar-section">
+                <div class="avatar-content">
+                    <div class="avatar-image-column">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/843dd85779c750ced3e992ab504dcc7773a8473896ad047bfff13cb8f8a9da11?placeholderIfAbsent=true&apiKey=acd33750e364423796cf9d346ab258d6" class="avatar-image" alt="3D avatar of Luzia, the AI Sign assistant" />
+                    </div>
+                    <div class="avatar-text-column">
+                        <div class="avatar-text-content">
+                            <h2 class="avatar-title">Apresentamos Luzia, o avatar 3D da AI Sign!</h2>
+                            <p class="avatar-subtitle">Ela será sua companheira dedicada na jornada da comunicação.</p>
+                            <p class="avatar-description">Luzia traduz a língua de sinais em tempo real, facilitando a interação entre deficientes auditivos e o mundo ao seu redor. Seja em conversas cotidianas, reuniões ou eventos, Luzia está aqui para garantir que você nunca perca uma palavra.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </section>
-  </main>
-</section>
+</body>
+</html>
