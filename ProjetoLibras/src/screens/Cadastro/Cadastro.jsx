@@ -19,7 +19,63 @@ export const Cadastro = () => {
           <div className="absolute w-[363px] h-[752px] top-0 left-0 rounded-xl">
             <div className="relative h-[464px] rounded-xl">
               {/* Restante do código dos campos de cadastro */}
-
+              <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
+      <div className="bg-[#f0f0f0] w-[1440px] h-[1024px] relative">
+        <div className="absolute w-[363px] h-[752px] top-[108px] left-[547px] rounded-xl">
+          <div className="absolute w-[363px] h-[752px] top-0 left-0 rounded-xl">
+            <div className="relative h-[464px] rounded-xl">
+              <div className="w-[363px] h-[73px] top-[92px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
+                <div className="absolute w-[317px] h-[73px] top-0 left-16">
+                  <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
+                  <div className="absolute w-[299px] h-8 top-5 left-[18px] [font-family:'Poppins',Helvetica] font-light text-[#324eff] text-[22px] tracking-[0] leading-[35.2px] whitespace-nowrap">
+                    Email
+                  </div>
+                </div>
+                <img
+                  className="absolute w-[35px] h-[30px] top-[21px] left-3.5"
+                  alt="Layer"
+                  src="https://c.animaapp.com/j928kLmN/img/layer-2@2x.png"
+                />
+              </div>
+              <div className="w-[363px] h-[73px] top-[193px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
+                <div className="absolute w-[317px] h-[73px] top-0 left-16">
+                  <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
+                  <div className="absolute w-[299px] h-8 top-5 left-[18px] [font-family:'Poppins',Helvetica] font-light text-[#324eff] text-[22px] tracking-[0] leading-[35.2px] whitespace-nowrap">
+                    Senha
+                  </div>
+                </div>
+                <img
+                  className="w-[35px] h-[30px] left-[15px] absolute top-[21px]"
+                  alt="Vector"
+                  src="https://c.animaapp.com/j928kLmN/img/vector.svg"
+                />
+              </div>
+              <div className="w-[363px] h-[73px] top-[294px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
+                <div className="absolute w-[317px] h-[73px] top-0 left-16">
+                  <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
+                  <div className="absolute w-[299px] h-8 top-5 left-[18px] [font-family:'Poppins',Helvetica] font-light text-[#324eff] text-[22px] tracking-[0] leading-[35.2px] whitespace-nowrap">
+                    Confirmação de Senha
+                  </div>
+                </div>
+                <img
+                  className="absolute w-[35px] h-[30px] top-[21px] left-[18px]"
+                  alt="Group"
+                  src="https://c.animaapp.com/j928kLmN/img/group-19@2x.png"
+                />
+              </div>
+              <div className="w-[363px] h-[73px] top-[391px] left-0 bg-[#324eff] shadow-[0px_2px_4px_#00000029] absolute rounded-xl">
+                <div className="absolute w-[317px] h-[73px] top-0 left-16">
+                  <div className="absolute w-[299px] h-[73px] top-0 left-0 bg-white rounded-xl" />
+                  <div className="absolute w-[299px] h-8 top-5 left-[18px] [font-family:'Poppins',Helvetica] font-light text-[#324eff] text-[22px] tracking-[0] leading-[35.2px] whitespace-nowrap">
+                    Telefone
+                  </div>
+                </div>
+                <img
+                  className="w-[33px] h-[34px] left-[17px] absolute top-[21px]"
+                  alt="Vector"
+                  src="https://c.animaapp.com/j928kLmN/img/vector-1.svg"
+                />
+              </div>
               <div className="absolute w-[367px] h-[175px] top-[581px] left-0">
                 <p className="absolute w-[234px] h-8 top-[143px] left-[75px] [font-family:'Roboto',Helvetica] font-normal text-[#324eff] text-base tracking-[0] leading-8 whitespace-nowrap">
                   Já tem uma conta? Entrar
