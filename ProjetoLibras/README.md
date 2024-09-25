@@ -8,13 +8,13 @@
 Para começar seu projeto, primeiro você precisa instalar as dependências com:
 
 ```
-instalação npm
+npm install
 ```
 
 Então, você poderá executar uma versão de desenvolvimento do projeto com:
 
 ```
-npm executar dev
+npm run dev
 ```
 
 Após alguns segundos, seu projeto deverá estar acessível no endereço
@@ -24,5 +24,5 @@ Após alguns segundos, seu projeto deverá estar acessível no endereço
 Se estiver satisfeito com o resultado, você pode finalmente construir o projeto para lançamento com:
 
 ```
-npm executar compilação
+npm run build
 ```
