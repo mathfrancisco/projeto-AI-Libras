@@ -48,6 +48,9 @@ export function Tradutor() {
       const result = `Sign language representation for: ${textToSign}`;
       setTranslationResult(result);
       addToHistory(result);
+
+      // Simulate gesture display
+      document.getElementById('gesture-display').innerText = `Gestures for: ${textToSign}`;
     }
   };
 
@@ -61,6 +64,7 @@ export function Tradutor() {
     setTranslationResult('');
     setTextToSign('');
     stopCapture();
+    document.getElementById('gesture-display').innerText = ''; // Clear gesture display
   };
 
   const handleDeleteLastGeneration = () => {
@@ -85,123 +89,78 @@ export function Tradutor() {
   };
 
   return (
-    <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
-      <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px]">
-        <div className="relative w-[1466px] h-[1024px] left-[-26px]">
-          <div className="absolute w-[1466px] h-[1024px] top-0 left-0">
-            <div className="absolute w-[1099px] h-[243px] top-[781px] left-[367px] bg-[#ffffff0f]" />
-            <div className="absolute w-[344px] h-[1024px] top-0 left-[26px] bg-[#3c70e7] rounded-[0px_58px_0px_0px]" />
-            <div className="absolute w-[344px] h-[173px] top-0 left-[26px] bg-[#3b59e0]" />
+    <div className="bg-[#f0f0f0] flex flex-col justify-center w-full min-h-screen">
+      <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px] mx-auto">
+        <div className="relative w-full h-full left-0">
+          <div className="absolute w-full h-full top-0 left-0">
 
             {/* Painel Esquerdo */}
-            <div className="absolute top-[70px] left-[66px] flex flex-col items-start">
-              <div className="mb-8">
-                <div className="[font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Perfil
+            <div className="absolute w-[344px] h-full top-0 left-0 bg-[#3c70e7] rounded-[0px_58px_0px_0px]">
+              <div className="absolute w-full h-[173px] top-0 left-0 bg-[#3b59e0]" />
+              
+              <div className="absolute top-[70px] left-[66px] flex flex-col items-start">
+                <div className="mb-8">
+                  <div className="[font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Perfil
+                  </div>
+                  <p className="font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal] mt-1">
+                    Lorem ipsum dolor sit amet
+                  </p>
                 </div>
-                <p className="font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal] mt-1">
-                  Lorem ipsum dolor sit amet
-                </p>
+
+                {/* Novo Chat */}
+                <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px] mb-8">
+                  <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Novo Chat
+                  </div>
+                </button>
+
+                {/* Histórico de Conversas */}
+                <div className="mb-8">
+                  <h3 className="text-white text-lg font-semibold mb-2">Histórico de Conversas</h3>
+                  {conversationHistory.map((conv, index) => (
+                    <div key={index} className="text-white text-sm mb-1 truncate">{conv}</div>
+                  ))}
+                </div>
               </div>
-
-              {/* Novo Chat */}
-              <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px] mb-8">
-                <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Novo Chat
-                </div>
-              </button>
-
-              {/* Imagem de perfil */}
-              <img className="w-14 h-14 object-cover mb-8" alt="Ellipse" src="https://c.animaapp.com/r9jpr4Nx/img/ellipse-3.png" />
-
-              {/* Histórico de Conversas */}
-              <div className="mb-8">
-                <h3 className="text-white text-lg font-semibold mb-2">Histórico de Conversas</h3>
-                {conversationHistory.map((conv, index) => (
-                  <div key={index} className="text-white text-sm mb-1 truncate">{conv}</div>
-                ))}
-              </div>
-
-              {/* Outros botões */}
-              <button onClick={() => handleNavigation('/settings')} className="inline-flex items-center justify-center gap-3.5 mb-4">
-                <img className="relative w-6 h-6" alt="Settings" src="https://c.animaapp.com/r9jpr4Nx/img/settings-icon.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Configurações
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/guides-and-faq')} className="inline-flex items-center justify-center gap-3.5 mb-4">
-                <img className="relative w-6 h-6" alt="Question" src="https://c.animaapp.com/r9jpr4Nx/img/question-1.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Guias e FAQ
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/upgrade')} className="inline-flex items-center justify-center gap-[13px] mb-4">
-                <img className="relative w-6 h-6" alt="Integration" src="https://c.animaapp.com/r9jpr4Nx/img/integration-1.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Upgrade
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/')} className="inline-flex items-center justify-center gap-4">
-                <img className="relative w-6 h-6" alt="Majesticons logout" src="https://c.animaapp.com/r9jpr4Nx/img/majesticons-logout-line.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Sair
-                </div>
-              </button>
             </div>
 
-            {/* Área de vídeo e tradução */}
-            <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
-              <Circle avatar="twenty-seven" className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]" />
-              <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
-                <video ref={videoRef} className="w-full h-40 mb-4" autoPlay muted />
-                <button
-                  onClick={handleCapture}
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                  Iniciar Captura
-                </button>
-                <button
-                  onClick={stopCapture}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl ml-2">
-                  Parar Captura
-                </button>
+            {/* Área Central */}
+            <div className="flex flex-col items-center justify-center">
+              {/* Exibição de vídeo/gestos */}
+              <div className="mt-8 w-[800px] h-[450px] bg-[#232121] text-white rounded-lg flex items-center justify-center">
+                <video ref={videoRef} className="w-full h-full object-cover" autoPlay muted />
+                <div id="gesture-display" className="absolute text-center text-white text-2xl">Gestures will appear here</div>
+              </div>
+
+              {/* Campo de texto para Tradução */}
+              <div className="mt-8 w-[800px]">
+                <textarea
+                  className="w-full h-[100px] p-4 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+                  value={textToSign}
+                  onChange={(e) => setTextToSign(e.target.value)}
+                  placeholder="Digite o texto para traduzir em Libras..."
+                />
                 <button
                   onClick={handleTranslate}
-                  className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl ml-2">
-                  Traduzir
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 mt-4 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
+                  Traduzir Texto para Libras
                 </button>
               </div>
             </div>
 
-            {/* Botões de histórico */}
-            <div className="absolute bottom-[10px] right-[100px] flex gap-4">
+            {/* Botões de controle de captura */}
+            <div className="flex gap-4 mt-8 justify-center">
               <button
-                onClick={handleDeleteLastGeneration}
+                onClick={handleCapture}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
+                Iniciar Captura
+              </button>
+              <button
+                onClick={stopCapture}
                 className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                Deletar Última Geração
-              </button>
-              <button
-                onClick={handleRegenerateGeneration}
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                Regenerar Última Geração
-              </button>
-            </div>
-
-            {/* Campo de texto */}
-            <div className="absolute bottom-[110px] right-[100px]">
-              <textarea
-                className="w-[500px] h-[100px] p-4 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
-                value={textToSign}
-                onChange={(e) => setTextToSign(e.target.value)}
-                placeholder="Digite o texto para traduzir em libras..."
-              />
-              <button
-                onClick={handleTextToSign}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 mt-4 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                Traduzir Texto para Libras
+                Parar Captura
               </button>
             </div>
           </div>
