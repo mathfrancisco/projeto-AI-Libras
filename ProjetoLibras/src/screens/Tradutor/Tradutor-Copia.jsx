@@ -1,9 +1,8 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Circle } from '../../components/Circle';
+import {Circle} from "../../components/Circle";
 
 export function Tradutor() {
-  const navigate = useNavigate();
   const [translationResult, setTranslationResult] = useState('');
   const [textToSign, setTextToSign] = useState('');
   const [conversationHistory, setConversationHistory] = useState([]);
@@ -79,10 +78,6 @@ export function Tradutor() {
     }
   };
 
-  const handleNavigation = (path) => {
-    navigate(path);
-  };
-
   const handleTextToSign = () => {
     console.log('Sending text to backend:', textToSign);
     setTimeout(() => {
@@ -91,129 +86,101 @@ export function Tradutor() {
   };
 
   return (
-    <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
-      <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px]">
-        <div className="relative w-[1466px] h-[1024px] left-[-26px]">
-          <div className="absolute w-[1466px] h-[1024px] top-0 left-0">
-            <div className="absolute w-[1099px] h-[243px] top-[781px] left-[367px] bg-[#ffffff0f]" />
-            <div className="absolute w-[344px] h-[1024px] top-0 left-[26px] bg-[#3c70e7] rounded-[0px_58px_0px_0px]" />
-            <div className="absolute w-[344px] h-[173px] top-0 left-[26px] bg-[#3b59e0]" />
-            
-            {/* Painel Esquerdo */}
-            <div className="absolute top-[70px] left-[66px] flex flex-col items-start">
-              <div className="mb-8">
-                <div className="[font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Perfil
+      <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
+        <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px]">
+          <div className="relative w-[1466px] h-[1024px] left-[-26px]">
+            <div className="absolute w-[1466px] h-[1024px] top-0 left-0">
+              <div className="absolute w-[1099px] h-[243px] top-[781px] left-[367px] bg-[#ffffff0f]" />
+              <div className="absolute w-[344px] h-[1024px] top-0 left-[26px] bg-[#3c70e7] rounded-[0px_58px_0px_0px]" />
+              <div className="absolute w-[344px] h-[173px] top-0 left-[26px] bg-[#3b59e0]" />
+
+              {/* Painel Esquerdo */}
+              <div className="absolute top-[70px] left-[66px] flex flex-col items-start">
+                <div className="mb-8">
+                  <div className="[font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Perfil
+                  </div>
+                  <p className="font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal] mt-1">
+                    Lorem ipsum dolor sit amet
+                  </p>
                 </div>
-                <p className="font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal] mt-1">
-                  Lorem ipsum dolor sit amet
-                </p>
-              </div>
 
-              {/* Novo Chat */}
-              <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px ] mb-8">
-                <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Novo Chat
-                </div>
-              </button>
-
-              {/* Imagem de perfil */}
-              <img className="w-14 h-14 object-cover mb-8" alt="Ellipse" src="https://c.animaapp.com/r9jpr4Nx/img/ellipse-3.png" />
-
-              {/* Histórico de Conversas */}
-              <div className="mb-8">
-                <h3 className="text-white text-lg font-semibold mb-2">Histórico de Conversas</h3>
-                {conversationHistory.map((conv, index) => (
-                  <div key={index} className="text-white text-sm mb-1 truncate">{conv}</div>
-                ))}
-              </div>
-
-              {/* Outros botões */}
-              <button onClick={() => handleNavigation('/settings')} className="inline-flex items-center justify-center gap-3.5 mb-4">
-                <img className="relative w-6 h-6" alt="Settings" src="https://c.animaapp.com/r9jpr4Nx/img/settings-icon.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Configurações
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/guides-and-faq')} className="inline-flex items-center justify-center gap-3.5 mb-4">
-                <img className="relative w-6 h-6" alt="Question" src="https://c.animaapp.com/r9jpr4Nx/img/question-1.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Guias e FAQ
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/upgrade')} className="inline-flex items-center justify-center gap-[13px] mb-4">
-                <img className="relative w-6 h-6" alt="Integration" src="https://c.animaapp.com/r9jpr4Nx/img/integration-1.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Upgrade
-                </div>
-              </button>
-
-              <button onClick={() => handleNavigation('/')} className="inline-flex items-center justify-center gap-4">
-                <img className="relative w-6 h-6" alt="Majesticons logout" src="https://c.animaapp.com/r9jpr4Nx/img/majesticons-logout-line.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                  Sair
-                </div>
-              </button>
-            </div>
-            
-            {/* Área de vídeo e tradução */}
-            <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
-              <Circle avatar="twenty-seven" className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]" />
-              <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
-                <video ref={videoRef} className="w-full h-40 mb-4" autoPlay muted />
-                <button onClick={handleCapture} className="bg-blue-500 text-white px-4 py-2 rounded">Iniciar Captura</button>
-                <button onClick={stopCapture} className="bg-red-500 text-white px-4 py-2 rounded ml-2">Parar Captura</button>
-                <button onClick={handleTranslate} className="bg-green-500 text-white px-4 py-2 rounded ml- 2">Traduzir</button>
-              </div>
-            </div>
-
-            {/* Resultado da tradução */}
-            <div className="absolute w-[750px] h-[71px] top-[770px] left-[545px]">
-              <h2 className="text-white text-lg font-semibold">Resultado da Tradução:</h2>
-              <div className="text-white text-base mt-2">{translationResult}</div>
-            </div>
-
-            {/* Botões de histórico */}
-            <div className="absolute flex gap-2 top-[908px] left-[543px]">
-              <button onClick={handleDeleteLastGeneration} className="bg-red-500 text-white px-4 py-2 rounded">Deletar Última Geração</button>
-              <button onClick={handleRegenerateGeneration} className="bg-yellow-500 text-white px-4 py-2 rounded">Regenerar Última Geração</button>
-            </div>
-
-            {/* Correção da barra de pesquisa */}
-            <div className="absolute w-[694px] h-14 top-[916px] left-[573px]">
-              <div className="relative h-14 rounded-[10px]">
-                <div className="flex w-[694px] items-center px-[30px] py-4 absolute top-0 left-0 rounded-[10px] border border-solid border-[#4454904a]">
-                  <img
-                    className="w-6 h-6 mr-[8px]"
-                    alt="Search"
-                    src="https://c.animaapp.com/r9jpr4Nx/img/material-symbols-search.svg"
-                  />
-                  <input
-                    type="text"
-                    value={textToSign}
-                    onChange={(e) => setTextToSign(e.target.value)}
-                    placeholder="Traduza qualquer texto para Libras ou Libras para texto"
-                    className="w-full bg-transparent text-[#44549078] font-medium text-base outline-none"
-                  />
-                </div>
-                <button
-                  onClick={handleTextToSign}
-                  className="absolute w-14 h-14 top-0 right-0 bg-[#3b59e0] rounded-r-[10px] flex items-center justify-center"
-                >
-                  <img
-                    className="w-8 h-[35px]"
-                    alt="Send"
-                    src="https://c.animaapp.com/r9jpr4Nx/img/vector-7.svg"
-                  />
+                {/* Novo Chat */}
+                <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px] mb-8">
+                  <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Novo Chat
+                  </div>
                 </button>
+
+                {/* Imagem de perfil */}
+                <img className="w-14 h-14 object-cover mb-8" alt="Ellipse" src="https://c.animaapp.com/r9jpr4Nx/img/ellipse-3.png" />
+
+                {/* Histórico de Conversas */}
+                <div className="mb-8">
+                  <h3 className="text-white text-lg font-semibold mb-2">Histórico de Conversas</h3>
+                  {conversationHistory.map((conv, index) => (
+                      <div key={index} className="text-white text-sm mb-1 truncate">{conv}</div>
+                  ))}
+                </div>
+
+                {/* Outros botões */}
+                <button onClick={() => handleNavigation('/settings')} className="inline-flex items-center justify-center gap-3.5 mb-4">
+                  <img className="relative w-6 h-6" alt="Settings" src="https://c.animaapp.com/r9jpr4Nx/img/settings-icon.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Configurações
+                  </div>
+                </button>
+
+                <button onClick={() => handleNavigation('/guides-and-faq')} className="inline-flex items-center justify-center gap-3.5 mb-4">
+                  <img className="relative w-6 h-6" alt="Question" src="https://c.animaapp.com/r9jpr4Nx/img/question-1.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Guias e FAQ
+                  </div>
+                </button>
+
+                <button onClick={() => handleNavigation('/upgrade')} className="inline-flex items-center justify-center gap-[13px] mb-4">
+                  <img className="relative w-6 h-6" alt="Integration" src="https://c.animaapp.com/r9jpr4Nx/img/integration-1.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Upgrade
+                  </div>
+                </button>
+
+                <button onClick={() => handleNavigation('/')} className="inline-flex items-center justify-center gap-4">
+                  <img className="relative w-6 h-6" alt="Majesticons logout" src="https://c.animaapp.com/r9jpr4Nx/img/majesticons-logout-line.svg" />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                    Sair
+                  </div>
+                </button>
+              </div>
+
+              {/* Área de vídeo e tradução */}
+              <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
+                <Circle avatar="twenty-seven" className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]" />
+                <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
+                  <video ref={videoRef} className="w-full h-40 mb-4" autoPlay muted />
+                  <button onClick={handleCapture} className="bg-blue-500 text-white px-4 py-2 rounded">Iniciar Captura</button>
+                  <button on
+
+                          Click={stopCapture} className="bg-red-500 text-white px-4 py-2 rounded ml-2">Parar Captura</button>
+                  <button onClick={handleTranslate} className="bg-green-500 text-white px-4 py-2 rounded ml-2">Traduzir</button>
+                </div>
+              </div>
+
+              {/* Resultado da tradução */}
+              <div className="absolute w-[750px] h-[71px] top-[770px] left-[545px]">
+                <h2 className="text-white text-lg font-semibold">Resultado da Tradução:</h2>
+                <div className="text-white text-base mt-2">{translationResult}</div>
+              </div>
+
+              {/* Botões de histórico */}
+              <div className="absolute flex gap-2 top-[908px] left-[543px]">
+                <button onClick={handleDeleteLastGeneration} className="bg-red-500 text-white px-4 py-2 rounded">Deletar Última Geração</button>
+                <button onClick={handleRegenerateGeneration} className="bg-yellow-500 text-white px-4 py-2 rounded">Regenerar Última Geração</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }

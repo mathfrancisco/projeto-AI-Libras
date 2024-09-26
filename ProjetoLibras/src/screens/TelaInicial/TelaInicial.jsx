@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "../../components/Avatar";
 
-export const TelaInical = () => {
+export const TelaInicial = () => {
   const navigate = useNavigate();
 
   const handleCadastroClick = () => {

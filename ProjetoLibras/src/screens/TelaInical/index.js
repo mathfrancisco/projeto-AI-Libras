@@ -1,1 +1,0 @@
-export { TelaInical } from "./TelaInical";
