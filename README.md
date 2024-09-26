@@ -34,4 +34,4 @@ Certifique-se de que você tenha as seguintes ferramentas instaladas:
 
    ```bash
    git clone https://github.com/mathfrancisco/projeto-AI-Libras.git
-   cd projeto-assistente-virtual/ProjetoLibras
+   cd ProjetoLibras
