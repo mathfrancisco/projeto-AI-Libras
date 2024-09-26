@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Circle } from "../../components/Circle";
+import { Circle } from '../../components/Circle';
 
 export function Tradutor() {
+  const navigate = useNavigate();
   const [translationResult, setTranslationResult] = useState('');
   const [textToSign, setTextToSign] = useState('');
   const [conversationHistory, setConversationHistory] = useState([]);
   const [isCapturing, setIsCapturing] = useState(false);
   const videoRef = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
@@ -30,19 +30,23 @@ export function Tradutor() {
   const stopCapture = () => {
     const videoElement = videoRef.current;
     const stream = videoElement.srcObject;
-    const tracks = stream.getTracks();
-    tracks.forEach(track => track.stop());
-    videoElement.srcObject = null;
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+      videoElement.srcObject = null;
+    }
     setIsCapturing(false);
   };
 
   const handleTranslate = async () => {
     if (isCapturing) {
+      // Simulate sign language translation
       const result = 'Simulated translation from sign language';
       setTranslationResult(result);
       addToHistory(result);
       stopCapture();
     } else if (textToSign) {
+      // Simulate text to sign language translation
       const result = `Sign language representation for: ${textToSign}`;
       setTranslationResult(result);
       addToHistory(result);
@@ -71,13 +75,19 @@ export function Tradutor() {
 
   const handleRegenerateGeneration = () => {
     if (conversationHistory.length > 0) {
-      const lastGeneration = conversationHistory[0];
       handleTranslate();
     }
   };
 
   const handleNavigation = (path) => {
     navigate(path);
+  };
+
+  const handleTextToSign = () => {
+    console.log('Sending text to backend:', textToSign);
+    setTimeout(() => {
+      console.log('Sign language representation:', textToSign);
+    }, 1000);
   };
 
   return (
@@ -101,7 +111,7 @@ export function Tradutor() {
               </div>
 
               {/* Novo Chat */}
-              <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px] mb-8">
+              <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px ] mb-8">
                 <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
                   Novo Chat
@@ -149,69 +159,57 @@ export function Tradutor() {
               </button>
             </div>
             
-            {/* Botões inferiores */}
-            <div className="absolute w-[729px] h-[41px] top-[844px] left-[572px]">
-              <button onClick={handleDeleteLastGeneration} className="inline-flex items-center justify-center gap-2 px-4 py-2.5 absolute top-0 left-0 bg-[#fb232330] rounded-md">
-                <img className="relative w-4 h-[18px]" alt="Vector" src="https://c.animaapp.com/r9jpr4Nx/img/vector-5.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#fb2323] text-sm tracking-[0] leading-[normal]">
-                  Delete last generation
-                </div>
-              </button>
-              <button onClick={handleRegenerateGeneration} className="inline-flex items-center justify-center gap-2.5 px-4 py-2.5 absolute top-0 left-[236px] bg-[#11b06333] rounded-md">
-                <img className="relative w-[14.81px] h-[18px]" alt="Vector" src="https://c.animaapp.com/r9jpr4Nx/img/vector-6.svg" />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#11b063] text-sm tracking-[0] leading-[normal]">
-                  Regenerate Generation
-                </div>
-              </button>
-              <div className="inline-flex items-center justify-center gap-2.5 absolute top-2.5 left-[535px]">
-                <div className="inline-flex items-center justify-center gap-2.5 relative flex-[0_0_auto]">
-                  <img className="relative w-[19.5px] h-[19.5px] ml-[-0.75px]" alt="Group" src="https://c.animaapp.com/r9jpr4Nx/img/group@2x.png" />
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#1e1e1e] text-sm tracking-[0] leading-[normal]">
-                    Palavras Usadas: 12000
-                  </div>
-                </div>
+            {/* Área de vídeo e tradução */}
+            <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
+              <Circle avatar="twenty-seven" className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]" />
+              <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
+                <video ref={videoRef} className="w-full h-40 mb-4" autoPlay muted />
+                <button onClick={handleCapture} className="bg-blue-500 text-white px-4 py-2 rounded">Iniciar Captura</button>
+                <button onClick={stopCapture} className="bg-red-500 text-white px-4 py-2 rounded ml-2">Parar Captura</button>
+                <button onClick={handleTranslate} className="bg-green-500 text-white px-4 py-2 rounded ml- 2">Traduzir</button>
               </div>
             </div>
-          </div>
 
-          {/* Área de vídeo e tradução */}
-          <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
-            <Circle avatar="twenty-seven" className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]" />
-            <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
-              <video ref={videoRef} className="w-full h-40 mb-4" autoPlay muted />
-              <p>{translationResult}</p>
+            {/* Resultado da tradução */}
+            <div className="absolute w-[750px] h-[71px] top-[770px] left-[545px]">
+              <h2 className="text-white text-lg font-semibold">Resultado da Tradução:</h2>
+              <div className="text-white text-base mt-2">{translationResult}</div>
             </div>
-          </div>
 
-          {/* Barra de pesquisa melhorada com botão de captura */}
-          <div className="absolute w-[694px] h-14 top-[916px] left-[573px]">
-            <div className="relative h-14 rounded-[10px] shadow-md">
-              <div className="flex w-[694px] items-center px-[30px] py-4 absolute top-0 left-0 rounded-[10px] border border-solid border-[#4454904a] bg-white">
-                <img className="w-6 h-6 mr-[8px] text-gray-400" alt="Search" src="https://c.animaapp.com/r9jpr4Nx/img/material-symbols-search.svg" />
-                <input
-                  type="text"
-                  value={textToSign}
-                  onChange={(e) => setTextToSign(e.target.value)}
-                  placeholder="Traduza qualquer texto para Libras ou Libras para texto"
-                  className="w-full bg-transparent text-gray-700 font-medium text-base outline-none placeholder-gray-400"
-                />
+            {/* Botões de histórico */}
+            <div className="absolute flex gap-2 top-[908px] left-[543px]">
+              <button onClick={handleDeleteLastGeneration} className="bg-red-500 text-white px-4 py-2 rounded">Deletar Última Geração</button>
+              <button onClick={handleRegenerateGeneration} className="bg-yellow-500 text-white px-4 py-2 rounded">Regenerar Última Geração</button>
+            </div>
+
+            {/* Correção da barra de pesquisa */}
+            <div className="absolute w-[694px] h-14 top-[916px] left-[573px]">
+              <div className="relative h-14 rounded-[10px]">
+                <div className="flex w-[694px] items-center px-[30px] py-4 absolute top-0 left-0 rounded-[10px] border border-solid border-[#4454904a]">
+                  <img
+                    className="w-6 h-6 mr-[8px]"
+                    alt="Search"
+                    src="https://c.animaapp.com/r9jpr4Nx/img/material-symbols-search.svg"
+                  />
+                  <input
+                    type="text"
+                    value={textToSign}
+                    onChange={(e) => setTextToSign(e.target.value)}
+                    placeholder="Traduza qualquer texto para Libras ou Libras para texto"
+                    className="w-full bg-transparent text-[#44549078] font-medium text-base outline-none"
+                  />
+                </div>
+                <button
+                  onClick={handleTextToSign}
+                  className="absolute w-14 h-14 top-0 right-0 bg-[#3b59e0] rounded-r-[10px] flex items-center justify-center"
+                >
+                  <img
+                    className="w-8 h-[35px]"
+                    alt="Send"
+                    src="https://c.animaapp.com/r9jpr4Nx/img/vector-7.svg"
+                  />
+                </button>
               </div>
-              <button
-                onClick={isCapturing ? handleTranslate : handleCapture}
-                className="absolute w-14 h-14 top-0 right-[56px] bg-[#3b59e0] rounded-l-none rounded-r-none flex items-center justify-center transition-colors duration-300 hover:bg-[#2c4ac2]"
-              >
-                <img
-                  className="w-8 h-[35px]"
-                  alt={isCapturing ? "Stop" : "Capture"}
-                  src={isCapturing ? "https://c.animaapp.com/r9jpr4Nx/img/stop-icon.svg" : "https://c.animaapp.com/r9jpr4Nx/img/camera-icon.svg"}
-                />
-              </button>
-              <button
-                onClick={handleTranslate}
-                className="absolute w-14 h-14 top-0 right-0 bg-[#3b59e0] rounded-r-[10px] flex items-center justify-center transition-colors duration-300 hover:bg-[#2c4ac2]"
-              >
-                <img className="w-8 h-[35px]" alt="Send" src="https://c.animaapp.com/r9jpr4Nx/img/vector-7.svg" />
-              </button>
             </div>
           </div>
         </div>
