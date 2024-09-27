@@ -7,64 +7,59 @@ import { drawHand } from "./utilities";
 import { Circle } from "../../components/Circle";
 
 // Definindo o componente principal Tradutor
+import axios from 'axios';
+
 export function Tradutor() {
-  // Estados para armazenar informações importantes
-  const [translationResult, setTranslationResult] = useState(''); // Resultado da tradução
-  const [textToSign, setTextToSign] = useState(''); // Texto a ser traduzido para sinais
-  const [conversationHistory, setConversationHistory] = useState([]); // Histórico de conversas
-  const [isCapturing, setIsCapturing] = useState(false); // Se está capturando vídeo
-  const [model, setModel] = useState(null); // Modelo de detecção de mãos
+  const [translationResult, setTranslationResult] = useState('');
+  const [textToSign, setTextToSign] = useState('');
+  const [conversationHistory, setConversationHistory] = useState([]);
+  const [isCapturing, setIsCapturing] = useState(false);
+  const [model, setModel] = useState(null);
+  const [error, setError] = useState(null);
   
-  // Referências para a webcam e o canvas (para desenhar)
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Efeito que roda quando o componente é montado
   useEffect(() => {
-    // Carrega o histórico de conversas do armazenamento local
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
-    // Carrega o modelo de detecção de mãos
     loadHandposeModel();
   }, []);
 
-  // Função para carregar o modelo de detecção de mãos
   const loadHandposeModel = async () => {
-    const loadedModel = await handpose.load();
-    setModel(loadedModel);
-    console.log("Modelo de detecção de mãos carregado.");
+    try {
+      const loadedModel = await handpose.load();
+      setModel(loadedModel);
+      console.log("Modelo de detecção de mãos carregado.");
+    } catch (error) {
+      console.error("Erro ao carregar o modelo de detecção de mãos:", error);
+      setError("Falha ao carregar o modelo de detecção de mãos. Por favor, recarregue a página.");
+    }
   };
 
-  // Função para executar a detecção de mãos
   const runHandpose = async () => {
-     if (
-       typeof webcamRef.current !== "undefined" &&
-       webcamRef.current !== null &&
-       webcamRef.current.video.readyState === 4
-     ) {
-       // Obtém as propriedades de vídeo
-       const video = webcamRef.current.video;
-       const videoWidth = webcamRef.current.video.videoWidth;
-       const videoHeight = webcamRef.current.video.videoHeight;
+    if (
+      typeof webcamRef.current !== "undefined" &&
+      webcamRef.current !== null &&
+      webcamRef.current.video.readyState === 4
+    ) {
+      const video = webcamRef.current.video;
+      const videoWidth = webcamRef.current.video.videoWidth;
+      const videoHeight = webcamRef.current.video.videoHeight;
 
-       // Define as dimensões do vídeo
-       webcamRef.current.video.width = videoWidth;
-       webcamRef.current.video.height = videoHeight;
+      webcamRef.current.video.width = videoWidth;
+      webcamRef.current.video.height = videoHeight;
 
-       // Define as dimensões do canvas
-       canvasRef.current.width = videoWidth;
-       canvasRef.current.height = videoHeight;
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
 
-       // Faz detecções usando o modelo handpose
-       const hand = await model.estimateHands(video);
+      const hand = await model.estimateHands(video);
 
-       // Desenha as mãos
-       const ctx = canvasRef.current.getContext("2d");
-       drawHand(hand, ctx);
-     }
-   };
+      const ctx = canvasRef.current.getContext("2d");
+      drawHand(hand, ctx);
+    }
+  };
 
-  // Função para iniciar a captura de vídeo
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -72,7 +67,6 @@ export function Tradutor() {
     }
   };
 
-  // Função para parar a captura de vídeo
   const stopCapture = () => {
     setIsCapturing(false);
     if (webcamRef.current) {
@@ -80,26 +74,58 @@ export function Tradutor() {
     }
   };
 
-  // Função para traduzir o texto
-  const handleTranslate = async () => {
-    // ... (código de tradução, mantido como antes)
+  const detectSignLanguage = async (imageData) => {
+    try {
+      const response = await axios.post('http://seu-backend-url/detect', { image: imageData });
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao detectar linguagem de sinais:", error);
+      setError("Erro ao se comunicar com o servidor. Tente novamente.");
+      throw error;
+    }
   };
 
-  // Função para adicionar uma conversa ao histórico
+  const captureAndDetect = async () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    try {
+      const result = await detectSignLanguage(imageSrc);
+      setTranslationResult(result.translation);
+      addToHistory(result.translation);
+    } catch (error) {
+      setError("Falha na detecção da linguagem de sinais. Tente novamente.");
+    }
+  };
+
+  const handleTranslate = async () => {
+    setError(null);
+    if (isCapturing) {
+      await captureAndDetect();
+      stopCapture();
+    } else if (textToSign) {
+      try {
+        const response = await axios.post('http://seu-backend-url/translate', { text: textToSign });
+        setTranslationResult(response.data.translation);
+        addToHistory(response.data.translation);
+      } catch (error) {
+        console.error("Erro ao traduzir texto para linguagem de sinais:", error);
+        setError("Erro ao traduzir texto. Tente novamente.");
+      }
+    }
+  };
+
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
-  // Função para iniciar um novo chat
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
     stopCapture();
+    setError(null);
   };
 
-  // Função para deletar a última geração do histórico
   const handleDeleteLastGeneration = () => {
     if (conversationHistory.length > 0) {
       const updatedHistory = conversationHistory.slice(1);
@@ -108,14 +134,12 @@ export function Tradutor() {
     }
   };
 
-  // Função para regenerar a última geração
   const handleRegenerateGeneration = () => {
     if (conversationHistory.length > 0) {
       handleTranslate();
     }
   };
 
-  // Efeito para executar a detecção de mãos periodicamente
   useEffect(() => {
     if (isCapturing) {
       const interval = setInterval(() => {
