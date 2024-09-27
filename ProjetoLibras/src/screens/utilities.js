@@ -3,11 +3,11 @@
 // Este objeto mapeia números para nomes de gestos e cores
 // Isso é usado para rotular e colorir diferentes gestos reconhecidos
 const labelMap = {
-    1: { name: 'Hello', color: 'red' },
-    2: { name: 'Thank You', color: 'yellow' },
-    3: { name: 'I Love You', color: 'lime' },
-    4: { name: 'Yes', color: 'blue' },
-    5: { name: 'No', color: 'purple' },
+    1: { name: 'Olá', color: 'red' },
+    2: { name: 'Obrigado', color: 'yellow' },
+    3: { name: 'Eu te amo', color: 'lime' },
+    4: { name: 'Sim', color: 'blue' },
+    5: { name: 'Não', color: 'purple' },
 };
 
 // Esta função desenha a malha da mão na tela
@@ -37,11 +37,11 @@ export const drawHand = (predictions, ctx) => {
 
             // Desenha conexões entre os pontos para formar a malha da mão
             const fingers = {
-                thumb: [0, 1, 2, 3, 4],
-                indexFinger: [0, 5, 6, 7, 8],
-                middleFinger: [0, 9, 10, 11, 12],
-                ringFinger: [0, 13, 14, 15, 16],
-                pinky: [0, 17, 18, 19, 20],
+                polegar: [0, 1, 2, 3, 4],
+                indicador: [0, 5, 6, 7, 8],
+                medio: [0, 9, 10, 11, 12],
+                anelar: [0, 13, 14, 15, 16],
+                mindinho: [0, 17, 18, 19, 20],
             };
 
             // Para cada dedo, desenha uma linha conectando seus pontos
