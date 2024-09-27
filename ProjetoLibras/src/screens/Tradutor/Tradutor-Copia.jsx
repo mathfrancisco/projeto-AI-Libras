@@ -5,7 +5,7 @@ import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { Circle } from "../../components/Circle";
-import axios from 'axios';
+
 
 // Definindo o componente principal Tradutor
 export function Tradutor() {
