@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import * as tf from "@tensorflow/tfjs";
+import * as poseNet from "@tensorflow-models/posenet";
 import { Circle } from "../../components/Circle";
 
 export function Tradutor() {
@@ -7,19 +9,56 @@ export function Tradutor() {
   const [conversationHistory, setConversationHistory] = useState([]);
   const [isCapturing, setIsCapturing] = useState(false);
   const videoRef = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
+    runPoseNet();
   }, []);
+
+  const runPoseNet = async () => {
+    const model = await poseNet.load();
+    setInterval(() => {
+      detectPose(model);
+    }, 100);
+  };
+
+  const detectPose = async (model) => {
+    if (
+      videoRef.current &&
+      videoRef.current.readyState === 4
+    ) {
+      const video = videoRef.current;
+      const videoWidth = videoRef.current.videoWidth;
+      const videoHeight = videoRef.current.videoHeight;
+
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
+
+      const poses = await model.estimatePoses(video);
+      drawPoses(poses, canvasRef.current.getContext("2d"));
+    }
+  };
+
+  const drawPoses = (poses, ctx) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    poses.forEach((pose) => {
+      pose.keypoints.forEach((keypoint) => {
+        ctx.beginPath();
+        ctx.arc(keypoint.position.x, keypoint.position.y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+      });
+    });
+  };
 
   const handleCapture = async () => {
     setIsCapturing(true);
-    const videoElement = videoRef.current;
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoElement.srcObject = stream;
-      videoElement.play();
+      videoRef.current.srcObject = stream;
+      videoRef.current.play();
     } catch (error) {
       console.error('Error accessing camera:', error);
     }
@@ -77,13 +116,6 @@ export function Tradutor() {
     }
   };
 
-  const handleTextToSign = () => {
-    console.log('Sending text to backend:', textToSign);
-    setTimeout(() => {
-      console.log('Sign language representation:', textToSign);
-    }, 1000);
-  };
-
   return (
     <div className="bg-[#f0f0f0] flex flex-col justify-center w-full min-h-screen">
       <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px] mx-auto">
@@ -126,8 +158,12 @@ export function Tradutor() {
             <div className="ml-[344px] mt-[50px] w-[calc(100%-344px)] pr-8 flex flex-col items-center">
 
               {/* Exibição de vídeo/gestos */}
-              <div className="w-[800px] h-[450px] bg-[#232121] text-white rounded-lg flex items-center justify-center mb-8">
+              <div className="w-[800px] h-[450px] bg-[#232121] text-white rounded-lg flex items-center justify-center mb-8 relative">
                 <video ref={videoRef} className="w-full h-full object-cover" autoPlay muted />
+                <canvas
+                  ref={canvasRef}
+                  className="absolute top-0 left-0 w-full h-full"
+                />
                 <div id="gesture-display" className="absolute text-center text-white text-2xl">Gestures will appear here</div>
               </div>
 
