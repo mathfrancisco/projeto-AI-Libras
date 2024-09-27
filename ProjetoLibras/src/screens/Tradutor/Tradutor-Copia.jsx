@@ -222,7 +222,7 @@ export function Tradutor() {
           {/* Área principal de conteúdo */}
           <div className="absolute w-[1099px] h-[243px] top-[781px] left-[367px] bg-[#ffffff0f]" />
 
-          {/* Área de captura de vídeo e tradução */}
+           {/* Área de captura de vídeo e tradução */}
           <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
             <Circle
               avatar="twenty-seven"
@@ -240,9 +240,13 @@ export function Tradutor() {
                   className="absolute top-0 left-0 w-full h-full"
                 />
               </div>
-              <button onClick={isCapturing ? stopCapture : handleCapture} className="bg-blue-500 text-white px-4 py-2 rounded mb-4 mt-4">
+              <button 
+                onClick={isCapturing ? stopCapture : handleCapture} 
+                className="bg-blue-500 text-white px-4 py-2 rounded mb-4 mt-4"
+              >
                 {isCapturing ? 'Parar Captura' : 'Iniciar Captura'}
               </button>
+              {error && <p className="text-red-500">{error}</p>}
               <p>{translationResult}</p>
             </div>
           </div>
@@ -313,7 +317,7 @@ export function Tradutor() {
                   src="https://c.animaapp.com/r9jpr4Nx/img/group@2x.png"
                 />
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#1e1e1e] text-sm tracking-[0] leading-[normal]">
-                  Palavras Usadas: 12000
+                  Palavras Usadas: {conversationHistory.length * 100} {/* Exemplo simples de contagem */}
                 </div>
               </div>
             </div>
