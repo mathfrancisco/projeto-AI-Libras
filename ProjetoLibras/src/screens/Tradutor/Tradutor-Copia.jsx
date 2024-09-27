@@ -1,3 +1,4 @@
+// Importando as bibliotecas necessárias
 import React, { useState, useRef, useEffect } from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
@@ -5,32 +6,41 @@ import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { Circle } from "../../components/Circle";
 
+// Definindo o componente principal Tradutor
 export function Tradutor() {
-  const [translationResult, setTranslationResult] = useState('');
-  const [textToSign, setTextToSign] = useState('');
-  const [conversationHistory, setConversationHistory] = useState([]);
-  const [isCapturing, setIsCapturing] = useState(false);
-  const [model, setModel] = useState(null);
+  // Estados para armazenar informações importantes
+  const [translationResult, setTranslationResult] = useState(''); // Resultado da tradução
+  const [textToSign, setTextToSign] = useState(''); // Texto a ser traduzido para sinais
+  const [conversationHistory, setConversationHistory] = useState([]); // Histórico de conversas
+  const [isCapturing, setIsCapturing] = useState(false); // Se está capturando vídeo
+  const [model, setModel] = useState(null); // Modelo de detecção de mãos
   
+  // Referências para a webcam e o canvas (para desenhar)
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
+  // Efeito que roda quando o componente é montado
   useEffect(() => {
+    // Carrega o histórico de conversas do armazenamento local
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
+    // Carrega o modelo de detecção de mãos
     loadHandposeModel();
   }, []);
 
+  // Função para carregar o modelo de detecção de mãos
   const loadHandposeModel = async () => {
     const loadedModel = await handpose.load();
     setModel(loadedModel);
     console.log("Modelo de detecção de mãos carregado.");
   };
 
+  // Função para executar a detecção de mãos
   const runHandpose = async () => {
     // ... (código de detecção de mãos, mantido como antes)
   };
 
+  // Função para iniciar a captura de vídeo
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -38,6 +48,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para parar a captura de vídeo
   const stopCapture = () => {
     setIsCapturing(false);
     if (webcamRef.current) {
@@ -45,22 +56,26 @@ export function Tradutor() {
     }
   };
 
+  // Função para traduzir o texto
   const handleTranslate = async () => {
     // ... (código de tradução, mantido como antes)
   };
 
+  // Função para adicionar uma conversa ao histórico
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
+  // Função para iniciar um novo chat
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
     stopCapture();
   };
 
+  // Função para deletar a última geração do histórico
   const handleDeleteLastGeneration = () => {
     if (conversationHistory.length > 0) {
       const updatedHistory = conversationHistory.slice(1);
@@ -69,12 +84,14 @@ export function Tradutor() {
     }
   };
 
+  // Função para regenerar a última geração
   const handleRegenerateGeneration = () => {
     if (conversationHistory.length > 0) {
       handleTranslate();
     }
   };
 
+  // Efeito para executar a detecção de mãos periodicamente
   useEffect(() => {
     if (isCapturing) {
       const interval = setInterval(() => {
@@ -84,6 +101,7 @@ export function Tradutor() {
     }
   }, [isCapturing, model]);
 
+  // Retornando a interface do usuário (UI)
   return (
     <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
       <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px]">
