@@ -5,11 +5,11 @@ import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { Circle } from "../../components/Circle";
-
-// Definindo o componente principal Tradutor
 import axios from 'axios';
 
+// Definindo o componente principal Tradutor
 export function Tradutor() {
+  // Estados para gerenciar os dados da aplicação
   const [translationResult, setTranslationResult] = useState('');
   const [textToSign, setTextToSign] = useState('');
   const [conversationHistory, setConversationHistory] = useState([]);
@@ -17,15 +17,18 @@ export function Tradutor() {
   const [model, setModel] = useState(null);
   const [error, setError] = useState(null);
   
+  // Referências para a webcam e o canvas
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
+  // Efeito para carregar o histórico de conversas e o modelo de detecção de mãos
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
     loadHandposeModel();
   }, []);
 
+  // Função para carregar o modelo de detecção de mãos
   const loadHandposeModel = async () => {
     try {
       const loadedModel = await handpose.load();
@@ -37,6 +40,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para executar a detecção de mãos
   const runHandpose = async () => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -60,6 +64,7 @@ export function Tradutor() {
     }
   };
 
+  // Funções para iniciar e parar a captura de vídeo
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -74,6 +79,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para detectar linguagem de sinais a partir de uma imagem
   const detectSignLanguage = async (imageData) => {
     try {
       const response = await axios.post('http://seu-backend-url/detect', { image: imageData });
@@ -85,6 +91,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para capturar imagem e detectar linguagem de sinais
   const captureAndDetect = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     try {
@@ -96,6 +103,7 @@ export function Tradutor() {
     }
   };
 
+  // Função principal de tradução
   const handleTranslate = async () => {
     setError(null);
     if (isCapturing) {
@@ -113,12 +121,14 @@ export function Tradutor() {
     }
   };
 
+  // Função para adicionar uma conversa ao histórico
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
+  // Funções para gerenciar o histórico de conversas
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
@@ -140,6 +150,7 @@ export function Tradutor() {
     }
   };
 
+  // Efeito para executar a detecção de mãos continuamente durante a captura
   useEffect(() => {
     if (isCapturing) {
       const interval = setInterval(() => {
@@ -290,40 +301,4 @@ export function Tradutor() {
               <img
                 className="relative w-4 h-[18px]"
                 alt="Ícone de deletar"
-                src="https://c.animaapp.com/r9jpr4Nx/img/vector-5.svg"
-              />
-              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#fb2323] text-sm tracking-[0] leading-[normal]">
-                Delete last generation
-              </div>
-            </button>
-            <button
-              onClick={handleRegenerateGeneration}
-              className="inline-flex items-center justify-center gap-2.5 px-4 py-2.5 absolute top-0 left-[236px] bg-[#11b06333] rounded-md"
-            >
-              <img
-                className="relative w-[14.81px] h-[18px]"
-                alt="Ícone de regenerar"
-                src="https://c.animaapp.com/r9jpr4Nx/img/vector-6.svg"
-              />
-              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#11b063] text-sm tracking-[0] leading-[normal]">
-                Regenerate Generation
-              </div>
-            </button>
-            <div className="inline-flex items-center justify-center gap-2.5 absolute top-2.5 left-[535px]">
-              <div className="inline-flex items-center justify-center gap-2.5 relative flex-[0_0_auto]">
-                <img
-                  className="relative w-[19.5px] h-[19.5px] ml-[-0.75px]"
-                  alt="Ícone de palavras"
-                  src="https://c.animaapp.com/r9jpr4Nx/img/group@2x.png"
-                />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#1e1e1e] text-sm tracking-[0] leading-[normal]">
-                  Palavras Usadas: {conversationHistory.length * 100} {/* Exemplo simples de contagem */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+                src="https://c.animaapp
