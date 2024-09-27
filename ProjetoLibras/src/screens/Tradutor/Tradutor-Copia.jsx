@@ -17,18 +17,15 @@ export function Tradutor() {
   const [model, setModel] = useState(null);
   const [error, setError] = useState(null);
   
-  // Referências para a webcam e o canvas
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Efeito para carregar o histórico de conversas e o modelo de detecção de mãos
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
     loadHandposeModel();
   }, []);
 
-  // Função para carregar o modelo de detecção de mãos
   const loadHandposeModel = async () => {
     try {
       const loadedModel = await handpose.load();
@@ -40,7 +37,6 @@ export function Tradutor() {
     }
   };
 
-  // Função para executar a detecção de mãos
   const runHandpose = async () => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -61,10 +57,11 @@ export function Tradutor() {
 
       const ctx = canvasRef.current.getContext("2d");
       drawHand(hand, ctx);
+
+      return hand;
     }
   };
 
-  // Funções para iniciar e parar a captura de vídeo
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -79,56 +76,32 @@ export function Tradutor() {
     }
   };
 
-  // Função para detectar linguagem de sinais a partir de uma imagem
-  const detectSignLanguage = async (imageData) => {
-    try {
-      const response = await axios.post('http://seu-backend-url/detect', { image: imageData });
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao detectar linguagem de sinais:", error);
-      setError("Erro ao se comunicar com o servidor. Tente novamente.");
-      throw error;
-    }
-  };
-
-  // Função para capturar imagem e detectar linguagem de sinais
   const captureAndDetect = async () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    try {
-      const result = await detectSignLanguage(imageSrc);
-      setTranslationResult(result.translation);
-      addToHistory(result.translation);
-    } catch (error) {
-      setError("Falha na detecção da linguagem de sinais. Tente novamente.");
-    }
+    const hand = await runHandpose();
+    const translation = simulateGestureTranslation(hand);
+    setTranslationResult(translation);
+    addToHistory(translation);
   };
 
-  // Função principal de tradução
   const handleTranslate = async () => {
     setError(null);
     if (isCapturing) {
       await captureAndDetect();
       stopCapture();
     } else if (textToSign) {
-      try {
-        const response = await axios.post('http://seu-backend-url/translate', { text: textToSign });
-        setTranslationResult(response.data.translation);
-        addToHistory(response.data.translation);
-      } catch (error) {
-        console.error("Erro ao traduzir texto para linguagem de sinais:", error);
-        setError("Erro ao traduzir texto. Tente novamente.");
-      }
+      // Simples simulação de tradução de texto para gesto
+      const translation = `Gesto para: "${textToSign}"`;
+      setTranslationResult(translation);
+      addToHistory(translation);
     }
   };
 
-  // Função para adicionar uma conversa ao histórico
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
-  // Funções para gerenciar o histórico de conversas
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
@@ -150,7 +123,6 @@ export function Tradutor() {
     }
   };
 
-  // Efeito para executar a detecção de mãos continuamente durante a captura
   useEffect(() => {
     if (isCapturing) {
       const interval = setInterval(() => {
