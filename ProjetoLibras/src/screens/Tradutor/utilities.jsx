@@ -1,7 +1,8 @@
-// utilities.js
 
+// utilities.jsx
 // Este objeto mapeia números para nomes de gestos e cores
 // Isso é usado para rotular e colorir diferentes gestos reconhecidos
+
 const labelMap = {
     1: { name: 'Olá', color: 'red' },
     2: { name: 'Obrigado', color: 'yellow' },
@@ -92,3 +93,4 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
         }
     }
 };
+
