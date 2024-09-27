@@ -293,7 +293,7 @@ export function Tradutor() {
           </div>
 
           {/* Botões de controle adicionais */}
-          <div className="absolute w-[729px] h-[41px] top-[844px] left-[572px]">
+           <div className="absolute w-[729px] h-[41px] top-[844px] left-[572px]">
             <button
               onClick={handleDeleteLastGeneration}
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 absolute top-0 left-0 bg-[#fb232330] rounded-md"
@@ -301,4 +301,40 @@ export function Tradutor() {
               <img
                 className="relative w-4 h-[18px]"
                 alt="Ícone de deletar"
-                src="https://c.animaapp
+                src="https://c.animaapp.com/r9jpr4Nx/img/vector-5.svg"
+              />
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#fb2323] text-sm tracking-[0] leading-[normal]">
+                Delete last generation
+              </div>
+            </button>
+            <button
+              onClick={handleRegenerateGeneration}
+              className="inline-flex items-center justify-center gap-2.5 px-4 py-2.5 absolute top-0 left-[236px] bg-[#11b06333] rounded-md"
+            >
+              <img
+                className="relative w-[14.81px] h-[18px]"
+                alt="Ícone de regenerar"
+                src="https://c.animaapp.com/r9jpr4Nx/img/vector-6.svg"
+              />
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#11b063] text-sm tracking-[0] leading-[normal]">
+                Regenerate Generation
+              </div>
+            </button>
+            <div className="inline-flex items-center justify-center gap-2.5 absolute top-2.5 left-[535px]">
+              <div className="inline-flex items-center justify-center gap-2.5 relative flex-[0_0_auto]">
+                <img
+                  className="relative w-[19.5px] h-[19.5px] ml-[-0.75px]"
+                  alt="Ícone de palavras"
+                  src="https://c.animaapp.com/r9jpr4Nx/img/group@2x.png"
+                />
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#1e1e1e] text-sm tracking-[0] leading-[normal]">
+                  Palavras Usadas: {conversationHistory.length * 100} {/* Exemplo simples de contagem */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
