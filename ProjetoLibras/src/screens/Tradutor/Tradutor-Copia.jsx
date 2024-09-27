@@ -25,10 +25,7 @@ export function Tradutor() {
   };
 
   const detectPose = async (model) => {
-    if (
-      videoRef.current &&
-      videoRef.current.readyState === 4
-    ) {
+    if (videoRef.current && videoRef.current.readyState === 4) {
       const video = videoRef.current;
       const videoWidth = videoRef.current.videoWidth;
       const videoHeight = videoRef.current.videoHeight;
@@ -85,7 +82,6 @@ export function Tradutor() {
       const result = `Sign language representation for: ${textToSign}`;
       setTranslationResult(result);
       addToHistory(result);
-      document.getElementById('gesture-display').innerText = `Gestures for: ${textToSign}`;
     }
   };
 
@@ -99,7 +95,6 @@ export function Tradutor() {
     setTranslationResult('');
     setTextToSign('');
     stopCapture();
-    document.getElementById('gesture-display').innerText = '';
   };
 
   const handleDeleteLastGeneration = () => {
@@ -117,84 +112,151 @@ export function Tradutor() {
   };
 
   return (
-    <div className="bg-[#f0f0f0] flex flex-col justify-center w-full min-h-screen">
-      <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px] mx-auto">
-        <div className="relative w-full h-full left-0">
-          <div className="absolute w-full h-full top-0 left-0">
-
-            {/* Painel Esquerdo */}
-            <div className="absolute w-[344px] h-full top-0 left-0 bg-[#3c70e7] rounded-[0px_58px_58px_0px]">
-              <div className="absolute w-full h-[173px] top-0 left-0 bg-[#3b59e0] rounded-tl-[58px]" />
-              
-              <div className="absolute top-[70px] left-[66px] flex flex-col items-start space-y-8">
-                <div>
-                  <div className="[font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                    Perfil
-                  </div>
-                  <p className="font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal] mt-1">
-                    Lorem ipsum dolor sit amet
-                  </p>
-                </div>
-
-                {/* Novo Chat */}
-                <button onClick={handleNewChat} className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 bg-[#00a0d1] rounded-[10px] mb-8">
-                  <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
+    <div className="bg-[#f0f0f0] flex flex-row justify-center w-full">
+      <div className="bg-[#f0f0f0] overflow-hidden w-[1440px] h-[1024px]">
+        <div className="relative w-[1466px] h-[1024px] left-[-26px]">
+          <div className="absolute w-[1466px] h-[1024px] top-0 left-0">
+            <div className="absolute w-[1099px] h-[243px] top-[781px] left-[367px] bg-[#ffffff0f]" />
+            <div className="absolute w-[344px] h-[1024px] top-0 left-[26px] bg-[#3c70e7] rounded-[0px_58px_0px_0px]" />
+            <div className="absolute w-[344px] h-[173px] top-0 left-[26px] bg-[#3b59e0]" />
+            <div className="inline-flex items-center justify-center gap-[15px] absolute top-[222px] left-[70px]">
+              <img
+                className="relative w-5 h-[19.5px]"
+                alt="Vector"
+                src="https://c.animaapp.com/r9jpr4Nx/img/vector-4.svg"
+              />
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                Histórico de Conversas
+              </div>
+            </div>
+            <div className="absolute top-[70px] left-[139px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+              Perfil
+            </div>
+            <p className="absolute top-[94px] left-[139px] font-normal text-xs [font-family:'Poppins',Helvetica] text-white tracking-[0] leading-[normal]">
+              Lorem ipsum dolor sit amet
+            </p>
+            <button
+              onClick={handleNewChat}
+              className="inline-flex items-center justify-center gap-[15px] px-[60px] py-4 absolute top-[839px] left-[51px] bg-[#00a0d1] rounded-[10px]"
+            >
+              <img className="relative w-6 h-6" alt="Gg add" src="https://c.animaapp.com/r9jpr4Nx/img/gg-add.svg" />
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
+                Novo Chat
+              </div>
+            </button>
+            {/* Conversation history items */}
+            {conversationHistory.map((conv, index) => (
+              <div key={index} className="absolute top-[273px] left-0 bg-[#324383] w-[370px] pl-[85px] pr-10 py-5">
+                <div className="inline-flex items-center justify-center gap-[15px] relative flex-[0_0_auto] ml-[-13.50px]">
+                  <img
+                    className="relative w-5 h-[19.5px]"
+                    alt="Vector"
+                    src="https://c.animaapp.com/r9jpr4Nx/img/vector-1.svg"
+                  />
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-white text-base tracking-[0] leading-[normal]">
-                    Novo Chat
+                    {conv}
                   </div>
-                </button>
-
-                {/* Histórico de Conversas */}
-                <div className="space-y-2">
-                  <h3 className="text-white text-lg font-semibold">Histórico de Conversas</h3>
-                  {conversationHistory.map((conv, index) => (
-                    <div key={index} className="text-white text-sm truncate">{conv}</div>
-                  ))}
+                </div>
+              </div>
+            ))}
+            <img
+              className="absolute w-14 h-14 top-[66px] left-[66px] object-cover"
+              alt="Ellipse"
+              src="https://c.animaapp.com/r9jpr4Nx/img/ellipse-3.png"
+            />
+            <div className="absolute w-[729px] h-[41px] top-[844px] left-[572px]">
+              <button
+                onClick={handleDeleteLastGeneration}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 absolute top-0 left-0 bg-[#fb232330] rounded-md"
+              >
+                <img
+                  className="relative w-4 h-[18px]"
+                  alt="Vector"
+                  src="https://c.animaapp.com/r9jpr4Nx/img/vector-5.svg"
+                />
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#fb2323] text-sm tracking-[0] leading-[normal]">
+                  Delete last generation
+                </div>
+              </button>
+              <button
+                onClick={handleRegenerateGeneration}
+                className="inline-flex items-center justify-center gap-2.5 px-4 py-2.5 absolute top-0 left-[236px] bg-[#11b06333] rounded-md"
+              >
+                <img
+                  className="relative w-[14.81px] h-[18px]"
+                  alt="Vector"
+                  src="https://c.animaapp.com/r9jpr4Nx/img/vector-6.svg"
+                />
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#11b063] text-sm tracking-[0] leading-[normal]">
+                  Regenerate Generation
+                </div>
+              </button>
+              <div className="inline-flex items-center justify-center gap-2.5 absolute top-2.5 left-[535px]">
+                <div className="inline-flex items-center justify-center gap-2.5 relative flex-[0_0_auto]">
+                  <img
+                    className="relative w-[19.5px] h-[19.5px] ml-[-0.75px]"
+                    alt="Group"
+                    src="https://c.animaapp.com/r9jpr4Nx/img/group@2x.png"
+                  />
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-medium text-[#1e1e1e] text-sm tracking-[0] leading-[normal]">
+                    Palavras Usadas: 12000
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Área Central com margens uniformes */}
-            <div className="ml-[344px] mt-[50px] w-[calc(100%-344px)] pr-8 flex flex-col items-center">
-
-              {/* Exibição de vídeo/gestos */}
-              <div className="w-[800px] h-[450px] bg-[#232121] text-white rounded-lg flex items-center justify-center mb-8 relative">
+            <img
+              className="absolute w-[164px] h-[58px] top-[914px] left-[92px]"
+              alt="Frame"
+              src="https://c.animaapp.com/r9jpr4Nx/img/frame-16.png"
+            />
+          </div>
+          <div className="flex w-[694px] items-start gap-[30px] px-[30px] py-5 absolute top-[456px] left-[545px] bg-[#232121] border-l-2 [border-left-style:solid] border-[#4c5ea1]">
+            <Circle
+              avatar="twenty-seven"
+              className="!h-[70px] bg-[url(https://c.animaapp.com/r9jpr4Nx/img/image-77@2x.png)] !w-[70px]"
+            />
+            <div className="relative w-[554px] h-[71px] mt-[-2.00px] mr-[-20.00px] [font-family:'Poppins',Helvetica] font-medium text-neutral-300 text-base tracking-[0] leading-[normal]">
+              <div className="w-full h-[300px] relative">
                 <video ref={videoRef} className="w-full h-full object-cover" autoPlay muted />
                 <canvas
                   ref={canvasRef}
                   className="absolute top-0 left-0 w-full h-full"
                 />
-                <div id="gesture-display" className="absolute text-center text-white text-2xl">Gestures will appear here</div>
               </div>
+              <button onClick={handleCapture} className="bg-blue-500 text-white px-4 py-2 rounded mb-4 mt-4">
+                {isCapturing ? 'Stop Capture' : 'Start Capture'}
+              </button>
+              <p>{translationResult}</p>
+            </div>
+          </div>
 
-              {/* Campo de texto para Tradução */}
-              <div className="w-[800px]">
-                <textarea
-                  className="w-full h-[100px] p-4 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+          {/* Input field for text to sign */}
+          <div className="absolute w-[694px] h-14 top-[916px] left-[573px]">
+            <div className="relative h-14 rounded-[10px]">
+              <div className="flex w-[694px] items-center px-[30px] py-4 absolute top-0 left-0 rounded-[10px] border border-solid border-[#4454904a]">
+                <img
+                  className="w-6 h-6 mr-[8px]"
+                  alt="Search"
+                  src="https://c.animaapp.com/r9jpr4Nx/img/material-symbols-search.svg"
+                />
+                <input
+                  type="text"
                   value={textToSign}
                   onChange={(e) => setTextToSign(e.target.value)}
-                  placeholder="Digite o texto para traduzir em Libras..."
+                  placeholder="Traduza qualquer texto para Libras ou Libras para texto"
+                  className="w-full bg-transparent text-[#44549078] font-medium text-base outline-none"
                 />
-                <button
-                  onClick={handleTranslate}
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 mt-4 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                  Traduzir Texto para Libras
-                </button>
               </div>
-
-              {/* Botões de controle de captura */}
-              <div className="flex gap-4 mt-8">
-                <button
-                  onClick={handleCapture}
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                  Iniciar Captura
-                </button>
-                <button
-                  onClick={stopCapture}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-xl">
-                  Parar Captura
-                </button>
-              </div>
+              <button
+                onClick={handleTranslate}
+                className="absolute w-14 h-14 top-0 right-0 bg-[#3b59e0] rounded-r-[10px] flex items-center justify-center"
+              >
+                <img
+                  className="w-8 h-[35px]"
+                  alt="Send"
+                  src="https://c.animaapp.com/r9jpr4Nx/img/vector-7.svg"
+                />
+              </button>
             </div>
           </div>
         </div>
