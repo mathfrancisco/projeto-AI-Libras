@@ -3,43 +3,45 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
-import { drawHand } from "./utilities";
+import { drawHand, drawRect } from "./utilities";
 import { Circle } from "../../components/Circle";
 
 // Definindo o componente principal Tradutor
 export function Tradutor() {
   // Estados para gerenciar os dados da aplicação
-  const [translationResult, setTranslationResult] = useState(''); // Armazena o resultado da tradução
-  const [textToSign, setTextToSign] = useState(''); // Armazena o texto a ser traduzido para sinais
-  const [conversationHistory, setConversationHistory] = useState([]); // Histórico de conversas
-  const [isCapturing, setIsCapturing] = useState(false); // Indica se a captura está ativa
-  const [model, setModel] = useState(null); // Armazena o modelo de detecção de mãos
-  const [error, setError] = useState(null); // Armazena mensagens de erro
+  const [translationResult, setTranslationResult] = useState('');
+  const [textToSign, setTextToSign] = useState('');
+  const [conversationHistory, setConversationHistory] = useState([]);
+  const [isCapturing, setIsCapturing] = useState(false);
+  const [model, setModel] = useState(null);
+  const [librasModel, setLibrasModel] = useState(null);
+  const [error, setError] = useState(null);
   
-  // Referências para a webcam e o canvas
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Efeito que carrega o histórico de conversas e o modelo de detecção de mãos ao iniciar
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
-    loadHandposeModel();
+    loadModels();
   }, []);
 
-  // Função para carregar o modelo de detecção de mãos
-  const loadHandposeModel = async () => {
+  const loadModels = async () => {
     try {
-      const loadedModel = await handpose.load();
-      setModel(loadedModel);
+      const loadedHandModel = await handpose.load();
+      setModel(loadedHandModel);
       console.log("Modelo de detecção de mãos carregado.");
+
+      // Carregando o modelo de reconhecimento de gestos de Libras
+      const loadedLibrasModel = await tf.loadLayersModel('path/to/libras/model');
+      setLibrasModel(loadedLibrasModel);
+      console.log("Modelo de reconhecimento de Libras carregado.");
     } catch (error) {
-      console.error("Erro ao carregar o modelo de detecção de mãos:", error);
-      setError("Falha ao carregar o modelo de detecção de mãos. Por favor, recarregue a página.");
+      console.error("Erro ao carregar os modelos:", error);
+      setError("Falha ao carregar os modelos. Por favor, recarregue a página.");
     }
   };
 
-  // Função para executar a detecção de mãos
   const runHandpose = async () => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -65,7 +67,26 @@ export function Tradutor() {
     }
   };
 
-  // Função para iniciar a captura de vídeo
+  // Nova função para reconhecer gestos
+  const recognizeGesture = (hand) => {
+    // Processar os dados da mão e usar o modelo para reconhecer o gesto
+    const processedData = processHandData(hand);
+    const gesture = librasModel.predict(processedData);
+    return interpretGestureResult(gesture);
+  };
+
+  // Nova função para processar os dados da mão
+  const processHandData = (hand) => {
+    // Implementar a lógica de processamento dos dados da mão
+    // Retornar os dados no formato esperado pelo modelo de Libras
+  };
+
+  // Nova função para interpretar o resultado do gesto
+  const interpretGestureResult = (gesture) => {
+    // Implementar a lógica para interpretar o resultado do modelo
+    // Retornar o gesto reconhecido em um formato utilizável
+  };
+
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -73,7 +94,6 @@ export function Tradutor() {
     }
   };
 
-  // Função para parar a captura de vídeo
   const stopCapture = () => {
     setIsCapturing(false);
     if (webcamRef.current) {
@@ -81,36 +101,55 @@ export function Tradutor() {
     }
   };
 
-  // Função para capturar e detectar gestos
   const captureAndDetect = async () => {
-    const hand = await runHandpose();
-    const translation = simulateGestureTranslation(hand);
-    setTranslationResult(translation);
-    addToHistory(translation);
-  };
-
-  // Função para traduzir (texto para gesto ou gesto para texto)
-  const handleTranslate = async () => {
-    setError(null);
-    if (isCapturing) {
-      await captureAndDetect();
-      stopCapture();
-    } else if (textToSign) {
-      // Simples simulação de tradução de texto para gesto
-      const translation = `Gesto para: "${textToSign}"`;
+    try {
+      const hand = await runHandpose();
+      const recognizedGesture = recognizeGesture(hand);
+      const translation = mapGestureToText(recognizedGesture);
       setTranslationResult(translation);
       addToHistory(translation);
+    } catch (error) {
+      setError(`Ocorreu um erro na detecção: ${error.message}. Por favor, tente novamente.`);
+      console.error('Erro detalhado:', error);
     }
   };
 
-  // Função para adicionar uma tradução ao histórico
+  // Nova função para mapear gesto para texto
+  const mapGestureToText = (gesture) => {
+    // Implementar a lógica para converter o gesto reconhecido em texto
+    // Retornar o texto correspondente ao gesto
+  };
+
+  const handleTranslate = async () => {
+    setError(null);
+    try {
+      if (isCapturing) {
+        await captureAndDetect();
+        stopCapture();
+      } else if (textToSign) {
+        const translation = await translateTextToLibras(textToSign);
+        setTranslationResult(translation);
+        addToHistory(translation);
+      }
+    } catch (error) {
+      setError(`Ocorreu um erro na tradução: ${error.message}. Por favor, tente novamente.`);
+      console.error('Erro detalhado:', error);
+    }
+  };
+
+  // Nova função para traduzir texto para Libras
+  const translateTextToLibras = async (text) => {
+    // Implementar a lógica para converter texto em uma sequência de gestos de Libras
+    // Pode envolver a renderização de animações ou uso de um avatar
+    // Retornar uma representação dos gestos de Libras
+  };
+
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
-  // Função para iniciar um novo chat
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
@@ -118,7 +157,6 @@ export function Tradutor() {
     setError(null);
   };
 
-  // Função para deletar a última geração do histórico
   const handleDeleteLastGeneration = () => {
     if (conversationHistory.length > 0) {
       const updatedHistory = conversationHistory.slice(1);
@@ -127,22 +165,26 @@ export function Tradutor() {
     }
   };
 
-  // Função para regenerar a última tradução
   const handleRegenerateGeneration = () => {
     if (conversationHistory.length > 0) {
       handleTranslate();
     }
   };
 
-  // Efeito para executar a detecção de mãos continuamente quando a captura está ativa
   useEffect(() => {
-    if (isCapturing) {
-      const interval = setInterval(() => {
-        runHandpose();
+    if (isCapturing && webcamRef.current && canvasRef.current) {
+      const interval = setInterval(async () => {
+        const hand = await runHandpose();
+        const ctx = canvasRef.current.getContext('2d');
+        drawHand(hand, ctx);
+        if (hand && hand.length > 0) {
+          const gesture = recognizeGesture(hand[0]);
+          drawRect([gesture.box], [gesture.class], [gesture.score], 0.8, webcamRef.current.video.videoWidth, webcamRef.current.video.videoHeight, ctx);
+        }
       }, 100);
       return () => clearInterval(interval);
     }
-  }, [isCapturing, model]);
+  }, [isCapturing, model, librasModel]);
 
   // Retornando a interface do usuário (UI)
   return (
