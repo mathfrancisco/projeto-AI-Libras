@@ -6,26 +6,28 @@ import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { Circle } from "../../components/Circle";
 
-
 // Definindo o componente principal Tradutor
 export function Tradutor() {
   // Estados para gerenciar os dados da aplicação
-  const [translationResult, setTranslationResult] = useState('');
-  const [textToSign, setTextToSign] = useState('');
-  const [conversationHistory, setConversationHistory] = useState([]);
-  const [isCapturing, setIsCapturing] = useState(false);
-  const [model, setModel] = useState(null);
-  const [error, setError] = useState(null);
+  const [translationResult, setTranslationResult] = useState(''); // Armazena o resultado da tradução
+  const [textToSign, setTextToSign] = useState(''); // Armazena o texto a ser traduzido para sinais
+  const [conversationHistory, setConversationHistory] = useState([]); // Histórico de conversas
+  const [isCapturing, setIsCapturing] = useState(false); // Indica se a captura está ativa
+  const [model, setModel] = useState(null); // Armazena o modelo de detecção de mãos
+  const [error, setError] = useState(null); // Armazena mensagens de erro
   
+  // Referências para a webcam e o canvas
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
+  // Efeito que carrega o histórico de conversas e o modelo de detecção de mãos ao iniciar
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('conversationHistory')) || [];
     setConversationHistory(storedHistory);
     loadHandposeModel();
   }, []);
 
+  // Função para carregar o modelo de detecção de mãos
   const loadHandposeModel = async () => {
     try {
       const loadedModel = await handpose.load();
@@ -37,6 +39,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para executar a detecção de mãos
   const runHandpose = async () => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -62,6 +65,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para iniciar a captura de vídeo
   const handleCapture = async () => {
     setIsCapturing(true);
     if (webcamRef.current) {
@@ -69,6 +73,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para parar a captura de vídeo
   const stopCapture = () => {
     setIsCapturing(false);
     if (webcamRef.current) {
@@ -76,6 +81,7 @@ export function Tradutor() {
     }
   };
 
+  // Função para capturar e detectar gestos
   const captureAndDetect = async () => {
     const hand = await runHandpose();
     const translation = simulateGestureTranslation(hand);
@@ -83,6 +89,7 @@ export function Tradutor() {
     addToHistory(translation);
   };
 
+  // Função para traduzir (texto para gesto ou gesto para texto)
   const handleTranslate = async () => {
     setError(null);
     if (isCapturing) {
@@ -96,12 +103,14 @@ export function Tradutor() {
     }
   };
 
+  // Função para adicionar uma tradução ao histórico
   const addToHistory = (conversation) => {
     const updatedHistory = [conversation, ...conversationHistory].slice(0, 3);
     setConversationHistory(updatedHistory);
     localStorage.setItem('conversationHistory', JSON.stringify(updatedHistory));
   };
 
+  // Função para iniciar um novo chat
   const handleNewChat = () => {
     setTranslationResult('');
     setTextToSign('');
@@ -109,6 +118,7 @@ export function Tradutor() {
     setError(null);
   };
 
+  // Função para deletar a última geração do histórico
   const handleDeleteLastGeneration = () => {
     if (conversationHistory.length > 0) {
       const updatedHistory = conversationHistory.slice(1);
@@ -117,12 +127,14 @@ export function Tradutor() {
     }
   };
 
+  // Função para regenerar a última tradução
   const handleRegenerateGeneration = () => {
     if (conversationHistory.length > 0) {
       handleTranslate();
     }
   };
 
+  // Efeito para executar a detecção de mãos continuamente quando a captura está ativa
   useEffect(() => {
     if (isCapturing) {
       const interval = setInterval(() => {
@@ -280,7 +292,7 @@ export function Tradutor() {
               </div>
             </button>
             <button
-              onClick={handleRegenerateGeneration}
+             onClick={handleRegenerateGeneration}
               className="inline-flex items-center justify-center gap-2.5 px-4 py-2.5 absolute top-0 left-[236px] bg-[#11b06333] rounded-md"
             >
               <img
@@ -292,6 +304,7 @@ export function Tradutor() {
                 Regenerate Generation
               </div>
             </button>
+            {/* Contador de palavras usadas */}
             <div className="inline-flex items-center justify-center gap-2.5 absolute top-2.5 left-[535px]">
               <div className="inline-flex items-center justify-center gap-2.5 relative flex-[0_0_auto]">
                 <img
