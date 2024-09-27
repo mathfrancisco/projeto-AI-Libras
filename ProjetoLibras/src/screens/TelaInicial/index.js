@@ -1,1 +1,1 @@
-export { TelaInical } from "./TelaInicial";
+export { TelaInicial } from "./TelaInicial";
