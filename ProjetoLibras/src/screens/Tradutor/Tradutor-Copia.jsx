@@ -37,8 +37,32 @@ export function Tradutor() {
 
   // Função para executar a detecção de mãos
   const runHandpose = async () => {
-    // ... (código de detecção de mãos, mantido como antes)
-  };
+     if (
+       typeof webcamRef.current !== "undefined" &&
+       webcamRef.current !== null &&
+       webcamRef.current.video.readyState === 4
+     ) {
+       // Obtém as propriedades de vídeo
+       const video = webcamRef.current.video;
+       const videoWidth = webcamRef.current.video.videoWidth;
+       const videoHeight = webcamRef.current.video.videoHeight;
+
+       // Define as dimensões do vídeo
+       webcamRef.current.video.width = videoWidth;
+       webcamRef.current.video.height = videoHeight;
+
+       // Define as dimensões do canvas
+       canvasRef.current.width = videoWidth;
+       canvasRef.current.height = videoHeight;
+
+       // Faz detecções usando o modelo handpose
+       const hand = await model.estimateHands(video);
+
+       // Desenha as mãos
+       const ctx = canvasRef.current.getContext("2d");
+       drawHand(hand, ctx);
+     }
+   };
 
   // Função para iniciar a captura de vídeo
   const handleCapture = async () => {
